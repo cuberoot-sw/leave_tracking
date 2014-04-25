@@ -15,21 +15,30 @@
             .btn-toolbar.pull-right.notification-nav
               .btn-group
                 .dropdown
-                  %a.btn.btn-notification(rel="nofollow" data-method="delete" href="/users/sign_out")
-                    %i.icon-lock
+                  -if user_signed_in?
+                    %a.btn.btn-notification(rel="nofollow" data-method="delete" href="/users/sign_out")
+                      %i.icon-lock
 
     .leftbar.leftbar-close.clearfix
       .admin-info.clearfix
-        .admin-thumb
-          %i.icon-user
-        .admin-meta
-          %ul
-            %li.admin-username username
+        -if user_signed_in?
+          .admin-thumb
+            %i.icon-user
+          .admin-meta
+            %ul
+              %li.admin-username
+                = current_user.email
+              %li
+                = link_to 'Profile', '#'
+                %a{:href => '/users/sign_out', 'data-method' => 'delete'}
+                  %i.icon-lock
+                  Logout
       .left-nav.clearfix
         .left-primary-nav
-          %ul#myTab
-            %li.active
-              %a.icon-desktop{:href => "#main", 'data-original-title' =>"Dashboard", :style => "font-size: 24px;"}
+          -if user_signed_in?
+            %ul#myTab
+              %li.active
+                %a.icon-desktop{:href => "#main", 'data-original-title' =>"Dashboard", :style => "font-size: 24px;"}
 
 
     .main-wrapper
