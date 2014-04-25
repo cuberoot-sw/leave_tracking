@@ -38,4 +38,6 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 #
 gem 'pg'
 gem 'devise'
+gem 'haml'
+gem 'simple_form'
 
