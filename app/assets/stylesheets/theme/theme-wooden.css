@@ -1,5 +1,5 @@
 body {
-	background:#333 url(../images/dark_wood.png) repeat !important;
+	background:#333 url(../dark_wood.png) repeat !important;
 }
 .navbar-inverse .navbar-inner {
 	background-color: #191818 !important;
@@ -27,7 +27,7 @@ body {
 	background: #674511 !important;
 }
 .main-wrapper {
-	background: #eee url(../images/retina_wood.png) repeat !important;
+	background: #eee url(../retina_wood.png) repeat !important;
 }
 .navbar .nav > li > .dropdown-menu:after {
 	border-bottom: 6px solid #333 !important;

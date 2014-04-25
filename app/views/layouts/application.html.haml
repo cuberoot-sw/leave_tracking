@@ -1,0 +1,42 @@
+!!!
+%html
+  %head
+    %title Lts4
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    .layout
+      .navbar.navbar-inverse.top-nav
+        .navbar-inner
+          .container
+            %a.brand{:href => "/"}
+              CubeRoot LTS
+            .btn-toolbar.pull-right.notification-nav
+              .btn-group
+                .dropdown
+                  %a.btn.btn-notification(rel="nofollow" data-method="delete" href="/users/sign_out")
+                    %i.icon-lock
+
+    .leftbar.leftbar-close.clearfix
+      .admin-info.clearfix
+        .admin-thumb
+          %i.icon-user
+        .admin-meta
+          %ul
+            %li.admin-username username
+      .left-nav.clearfix
+        .left-primary-nav
+          %ul#myTab
+            %li.active
+              %a.icon-desktop{:href => "#main", 'data-original-title' =>"Dashboard", :style => "font-size: 24px;"}
+
+
+    .main-wrapper
+      .container-fluid
+        .row-fluid
+          .span12
+            - flash.each do |name, msg|
+
+              = content_tag :div, msg, :class => "alert alert-#{name}" if msg.present?
+            = yield
