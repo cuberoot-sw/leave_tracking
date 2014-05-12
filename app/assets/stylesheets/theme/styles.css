@@ -594,7 +594,7 @@
 .close {
 	width:30px;
 	height:30px;
-	background-image: url(../images/alert-close.png) !important;
+	background-image: url(../alert-close.png) !important;
 	background-repeat:no-repeat;
 	line-height:30px;
 	text-align:center;
@@ -1122,7 +1122,7 @@ div.tagsinput div {
  .colorpicker-saturation {
 	width: 100px;
 	height: 100px;
-	background-image: url(../images/saturation.png);
+	background-image: url(../saturation.png);
 	cursor: crosshair;
 	float: left;
 }
@@ -1168,10 +1168,10 @@ div.tagsinput div {
 	margin-top: -1px;
 }
 .colorpicker-hue {
-	background-image: url(../images/hue.png);
+	background-image: url(../hue.png);
 }
 .colorpicker-alpha {
-	background-image: url(../images/alpha.png);
+	background-image: url(../alpha.png);
 	display: none;
 }
 .colorpicker {
@@ -1227,7 +1227,7 @@ div.tagsinput div {
 	height: 10px;
 	margin-top: 5px;
 	clear: both;
-	background-image: url(../images/alpha.png);
+	background-image: url(../alpha.png);
 	background-position: 0 100%;
 }
 .colorpicker-color div {
@@ -1693,7 +1693,7 @@ form.cmxform label.error {
 	box-shadow:none !important;
 }
 .stepy-titles .error-image {
-	background: #e8e8e8 url("../images/error.png") no-repeat right top !important;
+	background: #e8e8e8 url("../error.png") no-repeat right top !important;
 }
 .button-next, .finish, .button-back {
 	float: right;
@@ -1711,7 +1711,7 @@ form.cmxform label.error {
 	width: auto;
 }
 .stepy-error label.error {
-	background: url("../images/alert.png") no-repeat scroll left center transparent;
+	background: url("../alert.png") no-repeat scroll left center transparent;
 	color: #DE5130;
 	display: inline-block;
 	font-size: 11px !important;
@@ -1740,7 +1740,7 @@ form.cmxform label.error {
 	outline:none /* webkit grip focus */
 }
 .cleditorToolbar {
-	background: url('../images/toolbar.gif') repeat
+	background: url('../toolbar.gif') repeat
 }
 .cleditorGroup {
 	float:left;
@@ -1751,7 +1751,7 @@ form.cmxform label.error {
 	width:24px;
 	height:24px;
 	margin:1px 0 1px 0;
-	background: url('../images/buttons.gif')
+	background: url('../buttons.gif')
 }
 .cleditorDisabled {
 	opacity:0.3;
@@ -2284,23 +2284,23 @@ DATA TABLE
  */
 
 .sorting_asc {
-	background: url('../images/tbl-img/sort_asc.png') no-repeat center right;
+	background: url('../tbl-img/sort_asc.png') no-repeat center right;
 	cursor:pointer;
 }
 .sorting_desc {
-	background: url('../images/tbl-img/sort_desc.png') no-repeat center right;
+	background: url('../tbl-img/sort_desc.png') no-repeat center right;
 	cursor:pointer;
 }
 .sorting {
-	background: url('../images/tbl-img/sort_both.png') no-repeat center right;
+	background: url('../tbl-img/sort_both.png') no-repeat center right;
 	cursor:pointer;
 }
 .sorting_asc_disabled {
-	background: url('../images/tbl-img/sort_asc_disabled.png') no-repeat center right;
+	background: url('../tbl-img/sort_asc_disabled.png') no-repeat center right;
 	cursor:pointer;
 }
 .sorting_desc_disabled {
-	background: url('../images/tbl-img/sort_desc_disabled.png') no-repeat center right;
+	background: url('../tbl-img/sort_desc_disabled.png') no-repeat center right;
 	cursor:pointer;
 }
 th:active {
@@ -2720,7 +2720,7 @@ THEME SELECTOR
 	cursor:pointer;
 }
 .theme-fabrics {
-	background:url(../images/low_contrast_linen.png) no-repeat;
+	background:url(../low_contrast_linen.png) no-repeat;
 }
 .theme-blue {
 	background:#2288cc;
@@ -2729,7 +2729,7 @@ THEME SELECTOR
 	background:#c62500;
 }
 .theme-wooden {
-	background: url(../images/retina_wood.png) no-repeat;
+	background: url(../retina_wood.png) no-repeat;
 }
 .theme-default {
 	background:#e1e1e1;
