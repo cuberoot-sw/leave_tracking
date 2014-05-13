@@ -4,6 +4,12 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  validates :email,
+            :presence => true,
+            :length => { :in => 6..100 },
+            :uniqueness => true,
+            :format => { :with => /[-a-z0-9_+\.]+\@(cuberoot\.in)/i, :message => "should be a cuberoot.in email" }
+
   before_save :set_default_role
 
   ROLES = %w[employee admin]
