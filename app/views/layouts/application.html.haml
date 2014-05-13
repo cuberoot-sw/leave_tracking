@@ -39,6 +39,12 @@
             %ul#myTab
               %li.active
                 %a.icon-desktop{:href => "#main", 'data-original-title' =>"Dashboard", :style => "font-size: 24px;"}
+        .left-secondary-nav.tab-content
+          %ul.accordion-nav
+            %li
+              = link_to 'Settings', settings_path
+            %li
+              = link_to 'Manage Holidays', '#'
 
 
     .main-wrapper
