@@ -17,6 +17,7 @@
     <div class='form-container'>
       <%= form_for resource, as: resource_name, url: registration_path(resource_name), html: {id: 'stepy_form', class: 'form-horizontal'} do |f| %>
         <%= devise_error_messages! %>
+        <div class="valid-error stepy-error"></div>
         <fieldset id="stepy_form-step-0" class="step" title="Step 1">
           <legend style="display: none;">description one</legend>
           <div class='control-group'>
@@ -51,6 +52,37 @@
         <fieldset id="stepy_form-step-1" class="step" title="Step 2" style="display: none;">
           <legend style="display: none;">description Two</legend>
           <div class='control-group'>
+            <label class='control-label'>Name</label>
+            <div class='controls'>
+              <%= f.text_field :name %>
+            </div>
+          </div>
+
+          <div class='control-group'>
+            <label class='control-label'>Date of Birth</label>
+            <div class='controls'>
+              <div id="date_of_birth" class="input-append">
+                <%= f.text_field :date_of_birth %>
+							  <span class="add-on">
+                  <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+                </span>
+							</div>
+            </div>
+          </div>
+
+          <div class='control-group'>
+            <label class='control-label'>Date of Join</label>
+            <div class='controls'>
+              <div id="date_of_join" class="input-append">
+                <%= f.text_field :date_of_joining %>
+							  <span class="add-on">
+                  <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+                </span>
+							</div>
+            </div>
+          </div>
+
+          <div class='control-group'>
             <label class='control-label'>Password</label>
             <div class='controls'>
               <%= f.password_field :password, autocomplete: "off" %>
@@ -67,7 +99,21 @@
           <div class='control-group'>
             <label class='control-label'>Blood Group</label>
             <div class='controls'>
-              <%= f.text_field :blood_group %>
+              <%= f.select :blood_group, options_for_post_bloodgroup %>
+            </div>
+          </div>
+
+          <div class='control-group'>
+            <label class='control-label'>Skype ID</label>
+            <div class='controls'>
+              <%= f.text_field :skype_id %>
+            </div>
+          </div>
+
+          <div class='control-group'>
+            <label class='control-label'>Github ID</label>
+            <div class='controls'>
+              <%= f.text_field :github_id %>
             </div>
           </div>
 
@@ -97,13 +143,16 @@
 
     $('#stepy_form').validate({
       errorPlacement: function (error, element) {
-          $('#stepy_form div.stepy-error').append(error);
+          $('#stepy_form div.stepy-error.valid-error').prepend(error);
       },
       rules: {
           'user[email]': 'required',
           'user[alternate_email]': 'required',
           'user[phone_number]': 'required',
-          'user[alternate_phone_number]': 'required'
+          'user[alternate_phone_number]': 'required',
+          'user[name]': 'required',
+          'user[date_of_birth]': 'required',
+          'user[date_of_joining]': 'required'
       },
       messages: {
           'user[alternate_email]': {
@@ -113,13 +162,33 @@
               required: 'Email field is requerid!'
           },
           'user[phone_number]': {
-              required: 'phone_number field is requerid!'
+              required: 'Phone Number field is requerid!'
           },
           'user[alternate_phone_number]': {
-              required: 'alternate_phone_number field is requerid!'
+              required: 'Alternate Phone Number field is requerid!'
           },
+          'user[name]': {
+              required: 'Name field is requerid!'
+          },
+          'user[date_of_birth]': {
+              required: 'Date Of Birth field is required!'
+          },
+          'user[date_of_joining]': {
+              required: 'Date Of Join field is required!'
+          }
 
       }
-     });
+    });
+
+    $('#date_of_birth').datetimepicker({
+      pickTime: false,
+      format: 'yyyy/mm/dd'
+    });
+
+    $('#date_of_join').datetimepicker({
+      pickTime: false,
+      format: 'yyyy/mm/dd'
+    });
+
   });
 </script>

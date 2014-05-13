@@ -2,3 +2,8 @@
     background-color: #009600;
     color: #D4FFD4;
 }
+.stepy-error{
+  bottom: 0px;
+  top: 10px;
+  position: relative;
+}
