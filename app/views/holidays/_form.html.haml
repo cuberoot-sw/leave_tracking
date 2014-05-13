@@ -1,0 +1,16 @@
+= form_for @holiday do |f|
+  - if @holiday.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@holiday.errors.count, "error")} prohibited this holiday from being saved:"
+      %ul
+        - @holiday.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :date
+    = f.date_select :date
+  .field
+    = f.label :occasion
+    = f.text_field :occasion
+  .actions
+    = f.submit 'Save'

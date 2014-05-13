@@ -1,0 +1,24 @@
+.content-widgets.light-gray
+  .widget-head.orange
+    %h3 Listing settings
+  .widget-container
+    #data-table_wrapper.dataTables_wrapper.form-inline
+      %table#data-table.table.table-striped.table-bordered.dataTable
+        %tr
+          %th Year
+          %th Total leaves
+          %th
+          %th
+          %th
+
+        - @settings.each do |setting|
+          %tr
+            %td= setting.year
+            %td= setting.total_leaves
+            %td= link_to 'Show', setting
+            %td= link_to 'Edit', edit_setting_path(setting)
+            %td= link_to 'Destroy', setting, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+      %br
+
+= link_to 'New Setting', new_setting_path

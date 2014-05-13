@@ -41,4 +41,4 @@ gem 'devise'
 gem 'haml'
 gem 'simple_form'
 gem 'cancan'
-
+gem 'haml-rails'

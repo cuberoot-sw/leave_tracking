@@ -1,0 +1,9 @@
+.content-widgets.gray
+  .widget-head.orange
+    %h3 Editing setting
+  .widget-container
+    = render 'form'
+
+    = link_to 'Show', @setting
+    \|
+    = link_to 'Back', settings_path

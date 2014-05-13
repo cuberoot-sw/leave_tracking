@@ -1,0 +1,17 @@
+.content-widgets.gray
+  .widget-head.orange
+    %h3 Setting
+  .widget-container
+    %p#notice= notice
+
+
+    %p
+      %b Year:
+      = @setting.year
+    %p
+      %b Total leaves:
+      = @setting.total_leaves
+
+    = link_to 'Edit', edit_setting_path(@setting)
+    \|
+    = link_to 'Back', settings_path
