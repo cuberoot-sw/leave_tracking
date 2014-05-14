@@ -9,6 +9,8 @@
       %b Total leaves:
       = @setting.total_leaves
 
-    = link_to 'Edit', edit_setting_path(@setting)
+    = link_to edit_setting_path(@setting) do
+      %i.icon-edit{ title: 'Edit' }
     \|
-    = link_to 'Back', settings_path
+    = link_to settings_path do
+      %i.icon-arrow-left{ title: 'Back' }

@@ -9,6 +9,8 @@
       %b Occasion:
       = @holiday.occasion
 
-    = link_to 'Edit', edit_holiday_path(@holiday)
+    = link_to edit_holiday_path(@holiday) do
+      %i.icon-edit{ title: 'Edit' }
     \|
-    = link_to 'Back', holidays_path
+    = link_to holidays_path do
+      %i.icon-arrow-left{ title: 'Back' }

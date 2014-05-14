@@ -4,6 +4,8 @@
   .widget-container
     = render 'form'
 
-    = link_to 'Show', @setting
+    = link_to @setting do
+      %i.icon-reorder{ title: 'View' }
     \|
-    = link_to 'Back', settings_path
+    = link_to settings_path do
+      %i.icon-arrow-left{ title: 'Back' }
