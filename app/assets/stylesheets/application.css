@@ -17,4 +17,5 @@
  *= require theme/styles
  *= require theme/theme-wooden
  *= require custom
+ *= require pagination
  */

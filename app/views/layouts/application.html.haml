@@ -41,7 +41,7 @@
                 %a.icon-desktop{:href => "#main", 'data-original-title' =>"Dashboard", :style => "font-size: 24px;"}
         .left-secondary-nav.tab-content
           %ul.accordion-nav
-            - if current_user.is_admin?
+            - if user_signed_in? && current_user.is_admin?
               %li
                 = link_to 'Settings', settings_path
               %li

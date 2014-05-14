@@ -3,4 +3,5 @@ class Setting < ActiveRecord::Base
 
   validates_uniqueness_of :year
   validates_presence_of :year
+  self.per_page = 10
 end

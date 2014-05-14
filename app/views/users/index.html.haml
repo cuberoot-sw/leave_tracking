@@ -28,5 +28,7 @@
             -#%td
               -#= link_to user, :method => :delete, :data => { :confirm => 'Are you sure?' } do
                 -#%i.icon-trash{:title => 'delete'}
-
+      %br
+      .digg_pagination
+        = will_paginate @users, :container => false
       %br

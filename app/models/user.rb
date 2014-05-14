@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
 
   before_save :set_default_role
 
+  self.per_page = 10
+
   ROLES = %w[employee admin]
 
   def role?(base_role)

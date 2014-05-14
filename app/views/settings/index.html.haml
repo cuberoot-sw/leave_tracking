@@ -28,5 +28,8 @@
             %td= link_to 'Manage Holidays', holidays_path(setting)
 
       %br
+      .digg_pagination
+        = will_paginate @settings, :container => false
+      %br
 
 = link_to 'New Setting', new_setting_path, :class => 'btn btn-danger'
