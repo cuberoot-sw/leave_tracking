@@ -10,15 +10,23 @@
           %th
           %th
           %th
+          %th
 
         - @settings.each do |setting|
           %tr
             %td= setting.year
             %td= setting.total_leaves
-            %td= link_to 'Show', setting
-            %td= link_to 'Edit', edit_setting_path(setting)
-            %td= link_to 'Destroy', setting, :method => :delete, :data => { :confirm => 'Are you sure?' }
+            %td
+              = link_to setting do
+                %i.icon-reorder{:title => 'view'}
+            %td
+              = link_to edit_setting_path(setting) do
+                %i.icon-edit{:title => 'edit'}
+            %td
+              = link_to setting, :method => :delete, :data => { :confirm => 'Are you sure?' } do
+                %i.icon-trash{:title => 'delete'}
+            %td= link_to 'Manage Holidays', holidays_path(setting)
 
       %br
 
-= link_to 'New Setting', new_setting_path
+= link_to 'New Setting', new_setting_path, :class => 'btn btn-danger'

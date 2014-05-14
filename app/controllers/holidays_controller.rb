@@ -24,7 +24,8 @@ class HolidaysController < ApplicationController
   # POST /holidays
   # POST /holidays.json
   def create
-    @holiday = Holiday.new(holiday_params)
+    @setting = Setting.find(params[:id])
+    @holiday = @setting.holidays.new(holiday_params)
 
     respond_to do |format|
       if @holiday.save

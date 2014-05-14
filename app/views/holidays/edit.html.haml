@@ -1,7 +1,16 @@
-%h1 Editing holiday
+.content-widgets.gray
+  .widget-head.orange
+    %h3 Editing holiday
+  .widget-container
+    = render 'form'
 
-= render 'form'
+    = link_to 'Show', @holiday
+    \|
+    = link_to 'Back', holidays_path
 
-= link_to 'Show', @holiday
-\|
-= link_to 'Back', holidays_path
+:javascript
+  $(function () {
+    $('#holiday_date').datetimepicker({
+      pickTime: false,
+    });
+  });

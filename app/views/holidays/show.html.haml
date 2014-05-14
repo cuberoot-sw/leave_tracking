@@ -1,12 +1,14 @@
-%p#notice= notice
+.content-widgets.gray
+  .widget-head.orange
+    %h3 Holiday
+  .widget-container
+    %p
+      %b Date:
+      = @holiday.date
+    %p
+      %b Occasion:
+      = @holiday.occasion
 
-%p
-  %b Date:
-  = @holiday.date
-%p
-  %b Occasion:
-  = @holiday.occasion
-
-= link_to 'Edit', edit_holiday_path(@holiday)
-\|
-= link_to 'Back', holidays_path
+    = link_to 'Edit', edit_holiday_path(@holiday)
+    \|
+    = link_to 'Back', holidays_path

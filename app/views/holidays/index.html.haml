@@ -1,21 +1,30 @@
-%h1 Listing holidays
+.content-widgets.light-gray
+  .widget-head.orange
+    %h3 Listing holidays
+  .widget-container
+    #data-table_wrapper.dataTables_wrapper.form-inline
+      %table#data-table.table.table-striped.table-bordered.dataTable
+        %tr
+          %th Date
+          %th Occasion
+          %th
+          %th
+          %th
 
-%table
-  %tr
-    %th Date
-    %th Occasion
-    %th
-    %th
-    %th
+        - @holidays.each do |holiday|
+          %tr
+            %td= holiday.date
+            %td= holiday.occasion
+            %td
+              = link_to holiday do
+                <i class='icon-reorder' title='view'></i>
+            %td
+              = link_to edit_holiday_path(holiday) do
+                <i class='icon-edit' title='edit'></i>
+            %td
+              = link_to holiday, :method => :delete, :data => { :confirm => 'Are you sure?' } do
+                <i class='icon-trash' title='delete'></i>
 
-  - @holidays.each do |holiday|
-    %tr
-      %td= holiday.date
-      %td= holiday.occasion
-      %td= link_to 'Show', holiday
-      %td= link_to 'Edit', edit_holiday_path(holiday)
-      %td= link_to 'Destroy', holiday, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %br
 
-%br
-
-= link_to 'New Holiday', new_holiday_path
+= link_to 'New Holiday', new_holiday_path, :class => 'btn btn-danger'

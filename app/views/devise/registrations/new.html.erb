@@ -62,7 +62,7 @@
             <label class='control-label'>Date of Birth</label>
             <div class='controls'>
               <div id="date_of_birth" class="input-append">
-                <%= f.text_field :date_of_birth %>
+                <%= f.text_field :date_of_birth, { 'data-format' => "yyyy-MM-dd" } %>
 							  <span class="add-on">
                   <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
                 </span>
@@ -74,7 +74,7 @@
             <label class='control-label'>Date of Join</label>
             <div class='controls'>
               <div id="date_of_join" class="input-append">
-                <%= f.text_field :date_of_joining %>
+                <%= f.text_field :date_of_joining, { 'data-format' => "yyyy-MM-dd" }%>
 							  <span class="add-on">
                   <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
                 </span>
@@ -182,12 +182,10 @@
 
     $('#date_of_birth').datetimepicker({
       pickTime: false,
-      format: 'yyyy/mm/dd'
     });
 
     $('#date_of_join').datetimepicker({
       pickTime: false,
-      format: 'yyyy/mm/dd'
     });
 
   });
