@@ -1,0 +1,32 @@
+.content-widgets.light-gray
+  .widget-head.orange
+    %h3 Listing users
+  .widget-container
+    #data-table_wrapper.dataTables_wrapper.form-inline
+      %table#data-table.table.table-striped.table-bordered.dataTable
+        %tr
+          %th Name
+          %th Email
+          %th Role
+          %th Date Of Joining
+          -#%th
+          -#%th
+          -#%th
+
+        - @users.each do |user|
+          %tr
+            %td= user.name
+            %td= user.email
+            %td= user.role
+            %td= user.date_of_joining
+            -#%td
+              -#= link_to user do
+                -#%i.icon-reorder{:title => 'view'}
+            -#%td
+              -#= link_to edit_user_path(user) do
+                -#%i.icon-edit{:title => 'edit'}
+            -#%td
+              -#= link_to user, :method => :delete, :data => { :confirm => 'Are you sure?' } do
+                -#%i.icon-trash{:title => 'delete'}
+
+      %br
