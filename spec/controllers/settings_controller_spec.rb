@@ -89,4 +89,12 @@ describe SettingsController do
     end
   end
 
+  describe 'delete action' do
+    it "should delete a Setting" do
+      setting = FactoryGirl.create(:setting)
+      expect {
+        delete :destroy, id: setting.id
+      }.to change(Setting, :count).by(-1)
+    end
+  end
 end
