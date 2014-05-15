@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
             :uniqueness => true,
             :format => { :with => /[-a-z0-9_+\.]+\@(cuberoot\.in)/i, :message => "should be a cuberoot.in email" }
 
-  before_save :set_default_role
+  before_save :set_default_role unless Rails.env.test? # disable default_role
 
   self.per_page = 10
 

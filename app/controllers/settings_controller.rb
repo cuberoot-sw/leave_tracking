@@ -1,5 +1,7 @@
 class SettingsController < ApplicationController
   before_action :set_setting, only: [:show, :edit, :update, :destroy]
+  before_action :load_setting, only: :create
+  load_and_authorize_resource
 
   # GET /settings
   # GET /settings.json
@@ -24,8 +26,6 @@ class SettingsController < ApplicationController
   # POST /settings
   # POST /settings.json
   def create
-    @setting = Setting.new(setting_params)
-
     respond_to do |format|
       if @setting.save
         format.html { redirect_to @setting, notice: 'Setting was successfully created.' }
@@ -70,5 +70,9 @@ class SettingsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def setting_params
       params.require(:setting).permit(:year, :total_leaves)
+    end
+
+    def load_setting
+      @setting = Setting.new(setting_params)
     end
 end

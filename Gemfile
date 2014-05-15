@@ -43,3 +43,9 @@ gem 'simple_form'
 gem 'cancan'
 gem 'haml-rails'
 gem 'will_paginate'
+
+gem "capybara", :group => [:development, :test]
+gem "factory_girl_rails", :group => [:development, :test]
+gem "launchy", :group => [:development, :test]
+gem "rspec-rails", :group => [:development, :test]
+gem "database_cleaner", :group => [:development, :test]
