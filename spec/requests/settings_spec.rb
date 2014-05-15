@@ -45,7 +45,7 @@ describe "Settings" do
       visit setting_path(@setting)
 
     # when
-      find("a#edit_setting").click
+      find("a.edit_setting").click
 
     # then
       page.current_path.should eq("/settings/#{@setting.id}/edit")
@@ -63,6 +63,19 @@ describe "Settings" do
       page.should have_content "Setting was successfully updated."
       page.should have_content "30"
       page.should have_content @setting.year
+  end
+
+  it 'should render to edit page' do
+    # given
+    @setting = FactoryGirl.create(:setting)
+    visit settings_path
+
+    # when
+    find("a.edit-setting").click
+
+    # then
+    page.current_path.should eq("/settings/#{@setting.id}/edit")
+    page.should have_content "Editing setting"
   end
 
 end

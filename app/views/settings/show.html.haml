@@ -9,7 +9,7 @@
       %b Total leaves:
       = @setting.total_leaves
 
-    = link_to edit_setting_path(@setting), :id => 'edit_setting' do
+    = link_to edit_setting_path(@setting), :class => 'edit_setting' do
       %i.icon-edit{ title: 'Edit' }
     \|
     = link_to settings_path do
