@@ -7,7 +7,7 @@ class HolidaysController < ApplicationController
   # GET /holidays.json
   def index
     @setting = Setting.find(params[:setting_id])
-    @holidays = @setting.holidays.paginate(:page => params[:page])
+    @holidays = @setting.holidays.order('date ASC').paginate(:page => params[:page])
   end
 
   # GET /holidays/1

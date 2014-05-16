@@ -6,7 +6,7 @@ class SettingsController < ApplicationController
   # GET /settings
   # GET /settings.json
   def index
-    @settings = Setting.paginate(:page => params[:page]).all
+    @settings = Setting.paginate(:page => params[:page]).all.order('year ASC')
   end
 
   # GET /settings/1
