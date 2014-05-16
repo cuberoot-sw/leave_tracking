@@ -4,11 +4,11 @@
   .widget-container
     = render 'form'
 
-    = link_to @holiday do
+    = link_to [@setting, @holiday] do
       %i.icon-reorder{ title: 'View' }
     \|
-    = link_to holidays_path do
-      %i.icon-arrow-left{ title: 'Edit' }
+    = link_to setting_holidays_path do
+      %i.icon-arrow-left{ title: 'Back' }
 
 :javascript
   $(function () {

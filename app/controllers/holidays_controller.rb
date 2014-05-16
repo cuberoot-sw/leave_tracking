@@ -1,10 +1,13 @@
 class HolidaysController < ApplicationController
   before_action :set_holiday, only: [:show, :edit, :update, :destroy]
+  before_action :load_holiday, only: :create
+  load_and_authorize_resource
 
   # GET /holidays
   # GET /holidays.json
   def index
-    @holidays = Holiday.paginate(:page => params[:page]).all
+    @setting = Setting.find(params[:setting_id])
+    @holidays = @setting.holidays.paginate(:page => params[:page])
   end
 
   # GET /holidays/1
@@ -14,6 +17,7 @@ class HolidaysController < ApplicationController
 
   # GET /holidays/new
   def new
+    @setting = Setting.find(params[:setting_id])
     @holiday = Holiday.new
   end
 
@@ -24,12 +28,9 @@ class HolidaysController < ApplicationController
   # POST /holidays
   # POST /holidays.json
   def create
-    @setting = Setting.find(params[:id])
-    @holiday = @setting.holidays.new(holiday_params)
-
     respond_to do |format|
       if @holiday.save
-        format.html { redirect_to @holiday, notice: 'Holiday was successfully created.' }
+        format.html { redirect_to [@setting, @holiday], notice: 'Holiday was successfully created.' }
         format.json { render :show, status: :created, location: @holiday }
       else
         format.html { render :new }
@@ -43,7 +44,7 @@ class HolidaysController < ApplicationController
   def update
     respond_to do |format|
       if @holiday.update(holiday_params)
-        format.html { redirect_to @holiday, notice: 'Holiday was successfully updated.' }
+        format.html { redirect_to [@setting, @holiday], notice: 'Holiday was successfully updated.' }
         format.json { render :show, status: :ok, location: @holiday }
       else
         format.html { render :edit }
@@ -57,7 +58,7 @@ class HolidaysController < ApplicationController
   def destroy
     @holiday.destroy
     respond_to do |format|
-      format.html { redirect_to holidays_url }
+      format.html { redirect_to setting_holidays_url }
       format.json { head :no_content }
     end
   end
@@ -65,11 +66,17 @@ class HolidaysController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_holiday
+      @setting = Setting.find(params[:setting_id])
       @holiday = Holiday.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def holiday_params
       params.require(:holiday).permit(:date, :occasion)
+    end
+
+    def load_holiday
+      @setting = Setting.find(params[:setting_id])
+      @holiday = Holiday.new(holiday_params)
     end
 end

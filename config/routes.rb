@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   resources :settings do
-    member do
-      resources :holidays
-    end
+    resources :holidays
   end
 
   resources :users, :only => [:index]
