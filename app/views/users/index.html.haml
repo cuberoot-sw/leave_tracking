@@ -1,6 +1,7 @@
 .content-widgets.light-gray
   .widget-head.orange
     %h3 Listing users
+  = link_to 'Invite User', new_user_invitation_path, :class => 'btn btn-danger'
   .widget-container
     #data-table_wrapper.dataTables_wrapper.form-inline
       %table#data-table.table.table-striped.table-bordered.dataTable

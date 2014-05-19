@@ -49,3 +49,4 @@ gem "factory_girl_rails", :group => [:development, :test]
 gem "launchy", :group => [:development, :test]
 gem "rspec-rails", :group => [:development, :test]
 gem "database_cleaner", :group => [:development, :test]
+gem "devise_invitable"
