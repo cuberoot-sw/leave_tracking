@@ -15,6 +15,15 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:sign_up) do |u|
       u.permit!
     end
+
+    devise_parameter_sanitizer.for(:accept_invitation).concat [:manager_id]
+    devise_parameter_sanitizer.for(:invite).concat [:manager_id]
+    devise_parameter_sanitizer.for(:accept_invitation) do |u|
+      u.permit!
+    end
+    devise_parameter_sanitizer.for(:invite) do |u|
+      u.permit!
+    end
   end
 
 end

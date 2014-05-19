@@ -53,5 +53,26 @@ describe "Admin" do
       page.should have_content "should be a cuberoot.in email"
   end
 
+  it "should be a manager of invited user" do
+    # given
+      visit users_path
+
+    # when
+      click_link 'Invite Employee'
+
+    # then
+      page.current_path.should eq(new_user_invitation_path)
+
+    # when
+      fill_in "Email", :with => "example@cuberoot.in"
+      click_button "Send an invitation"
+
+    # then
+      employee = User.last
+      employee.email = 'example@cuberoot.in'
+      employee.manager_id = @user.id
+
+  end
+
 
 end
