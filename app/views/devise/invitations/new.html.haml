@@ -4,8 +4,6 @@
   .widget-container
     = simple_form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => {:method => :post, :class => 'form-horizontal'} do |f|
       = devise_error_messages!
-      = resource.class.invite_key_fields
-      = resource_name
       %input{:type => 'hidden', :name => 'user[manager_id]', :value => 1}
       .control-group
         - resource.class.invite_key_fields.each do |field|

@@ -1,0 +1,63 @@
+%fieldset#stepy_form-step-0.step{title: "Step 1"}
+  %legend{style: "display: none;"} description one
+  .control-group
+    %label.control-label Email
+    .controls
+      = f.email_field :email, :class => "error"
+  .control-group
+    %label.control-label Alternate Email
+    .controls
+      = f.email_field :alternate_email, :class => "error"
+  .control-group
+    %label.control-label Phone Number
+    .controls
+      = f.text_field :phone_number, :class => "error"
+  .control-group
+    %label.control-label Alternate Phone Number
+    .controls
+      = f.text_field :alternate_phone_number, :class => "error"
+  .control-group
+    %label.control-label Profile Picture
+    .controls
+      = f.file_field :profile_pic
+%fieldset#stepy_form-step-1.step{style: "display: none;", title: "Step 2"}
+  %legend{style: "display: none;"} description Two
+  .control-group
+    %label.control-label Name
+    .controls
+      = f.text_field :name
+  .control-group
+    %label.control-label Date of Birth
+    .controls
+      #date_of_birth.input-append
+        = f.text_field :date_of_birth, { 'data-format' => "yyyy-MM-dd" }
+        %span.add-on
+          %i{"data-date-icon" => "icon-calendar", "data-time-icon" => "icon-time"}
+  .control-group
+    %label.control-label Date of Join
+    .controls
+      #date_of_join.input-append
+        = f.text_field :date_of_joining, { 'data-format' => "yyyy-MM-dd" }
+        %span.add-on
+          %i{"data-date-icon" => "icon-calendar", "data-time-icon" => "icon-time"}
+  .control-group
+    %label.control-label Password
+    .controls
+      = f.password_field :password, autocomplete: "off"
+  .control-group
+    %label.control-label Confirm Password
+    .controls
+      = f.password_field :password_confirmation, autocomplete: "off"
+  .control-group
+    %label.control-label Blood Group
+    .controls
+      = f.select :blood_group, options_for_post_bloodgroup
+  .control-group
+    %label.control-label Skype ID
+    .controls
+      = f.text_field :skype_id
+  .control-group
+    %label.control-label Github ID
+    .controls
+      = f.text_field :github_id
+%button.finish.btn.btn-extend{type: "submit"} Finish!

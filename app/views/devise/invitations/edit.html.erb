@@ -1,11 +1,97 @@
-<h2><%= t 'devise.invitations.edit.header' %></h2>
+<div class='content-widgets light-gray'>
+  <div class='widget-head orange'>
+    <h3><%= t 'devise.invitations.edit.header' %></h3>
+  </div>
+</div>
+<div class='stepy-widget'>
+  <div class='widget-head clearfix orange'>
+    <div id='top_tabby' class='pull-right'>
+      <ul id='stepy_form-titles' class='stepy-titles'>
+        <li id='stepy_form-title-0' class='current-step'>
+          <div>Step1</div>
+        </li>
 
-<%= simple_form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put } do |f| %>
-  <%= devise_error_messages! %>
-  <%= f.hidden_field :invitation_token %>
+        <li id='stepy_form-title-1' class='current-step'>
+          <div>Step2</div>
+        </li>
+      </ul>
+    </div>
+  </div>
 
-  <%= f.input :password %>
-  <%= f.input :password_confirmation %>
+  <div class='widget-container gray'>
+    <div class='form-container'>
+      <%= simple_form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put, :id => 'stepy_form', :class => 'form-horizontal'} do |f| %>
+        <%= devise_error_messages! %>
+        <%= f.hidden_field :invitation_token %>
+        <div class="valid-error stepy-error"></div>
+        <%= render :partial => "form", :locals => { :f=> f } %>
+      <% end %>
+    </div>
+  </div>
+</div>
 
-  <%= f.submit t("devise.invitations.edit.submit_button") %>
-<% end %>
+
+<script type="text/javascript">
+  $(function () {
+    /*==JQUERY STEPY==*/
+    $('#stepy_form').stepy({
+        backLabel: 'Back',
+        nextLabel: 'Next',
+        errorImage: true,
+        block: true,
+        description: false,
+        legend: false,
+        titleClick: true,
+        titleTarget: '#top_tabby',
+        validate: true
+    });
+
+    $('#stepy_form').validate({
+      errorPlacement: function (error, element) {
+          $('#stepy_form div.stepy-error.valid-error').prepend(error);
+      },
+      rules: {
+          'user[email]': 'required',
+          'user[alternate_email]': 'required',
+          'user[phone_number]': 'required',
+          'user[alternate_phone_number]': 'required',
+          'user[name]': 'required',
+          'user[date_of_birth]': 'required',
+          'user[date_of_joining]': 'required'
+      },
+      messages: {
+          'user[alternate_email]': {
+              required: 'alternate_email field is required!'
+          },
+          'user[email]': {
+              required: 'Email field is requerid!'
+          },
+          'user[phone_number]': {
+              required: 'Phone Number field is requerid!'
+          },
+          'user[alternate_phone_number]': {
+              required: 'Alternate Phone Number field is requerid!'
+          },
+          'user[name]': {
+              required: 'Name field is requerid!'
+          },
+          'user[date_of_birth]': {
+              required: 'Date Of Birth field is required!'
+          },
+          'user[date_of_joining]': {
+              required: 'Date Of Join field is required!'
+          }
+
+      }
+    });
+
+    $('#date_of_birth').datetimepicker({
+      pickTime: false,
+    });
+
+    $('#date_of_join').datetimepicker({
+      pickTime: false,
+    });
+
+  });
+</script>
