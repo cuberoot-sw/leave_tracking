@@ -1,0 +1,12 @@
+.content-widgets.light-gray
+  .widget-head.orange
+    %h3 Profile
+  .row-fluid
+    .span6
+      %p
+        %strong Name:
+        = @user.name
+      %p
+        %strong Date Of Birth
+        = @user.date_of_birth.strftime('%d %b %Y')
+

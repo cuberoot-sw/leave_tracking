@@ -32,7 +32,7 @@
               %li.admin-username
                 = current_user.email
               %li
-                = link_to 'Profile', '#'
+                = link_to 'Profile', profile_path(current_user)
                 %a{:href => '/users/sign_out', 'data-method' => 'delete'}
                   %i.icon-lock
                   Logout
