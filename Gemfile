@@ -51,3 +51,4 @@ gem "rspec-rails", :group => [:development, :test]
 gem "database_cleaner", :group => [:development, :test]
 gem "devise_invitable"
 gem "email_spec", :group => [:development, :test]
+gem 'carrierwave'

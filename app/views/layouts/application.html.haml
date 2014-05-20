@@ -23,7 +23,10 @@
       .admin-info.clearfix
         -if user_signed_in?
           .admin-thumb
-            %i.icon-user
+            - if current_user.profile_pic_url.present?
+              = image_tag current_user.profile_pic_url.to_s
+            - else
+              %i.icon-user
           .admin-meta
             %ul
               %li.admin-username

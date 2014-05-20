@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
 
   self.per_page = 10
 
+  mount_uploader :profile_pic, ProfilePicUploader
+
   ROLES = %w[employee admin]
 
   def role?(base_role)
