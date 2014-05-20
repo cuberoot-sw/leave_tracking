@@ -63,6 +63,9 @@ GEM
       actionmailer (>= 3.2.6, < 5)
       devise (>= 3.2.0)
     diff-lcs (1.2.5)
+    email_spec (1.5.0)
+      launchy (~> 2.1)
+      mail (~> 2.2)
     erubis (2.7.0)
     execjs (2.0.2)
     factory_girl (4.4.0)
@@ -184,6 +187,7 @@ DEPENDENCIES
   debugger
   devise
   devise_invitable
+  email_spec
   factory_girl_rails
   haml
   haml-rails

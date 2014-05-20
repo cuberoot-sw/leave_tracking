@@ -6,7 +6,7 @@ require 'rspec/autorun'
 require 'capybara/rspec'
 require 'factory_girl_rails'
 require 'factory_girl'
-
+require 'email_spec'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -60,4 +60,7 @@ RSpec.configure do |config|
   config.after(:each) do
     DatabaseCleaner.clean
   end
+
+  config.include(EmailSpec::Helpers)
+  config.include(EmailSpec::Matchers)
 end
