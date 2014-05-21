@@ -3,7 +3,9 @@ Rails.application.routes.draw do
     resources :holidays
   end
 
-  resources :users, :only => [:index]
+  resources :users, :only => [:index] do
+    resources :leaves
+  end
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

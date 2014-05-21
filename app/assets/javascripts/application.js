@@ -18,3 +18,4 @@
 //= require jquery.validate
 //= require stepy.jquery
 //= require bootstrap-datetimepicker.min
+//= require leaves

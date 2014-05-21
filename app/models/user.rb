@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
 
   before_save :set_default_role unless Rails.env.test? # disable default_role
 
+  has_many :leaves, :class_name => 'Leave'
+
   self.per_page = 10
 
   mount_uploader :profile_pic, ProfilePicUploader

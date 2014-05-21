@@ -1,0 +1,30 @@
+%p#notice= notice
+
+%p
+  %b Start date:
+  = @leave.start_date.strftime('%d %b %Y')
+%p
+  %b End date:
+  = @leave.end_date.strftime('%d %b %Y')
+%p
+  %b No of days:
+  = @leave.no_of_days
+%p
+  %b Status:
+  = @leave.status
+%p
+  %b Reason:
+  = @leave.reason
+%p
+  %b Approved on:
+  = @leave.approved_on
+%p
+  %b Approved by:
+  = @leave.approved_by
+%p
+  %b Rejection reason:
+  = @leave.rejection_reason
+
+= link_to 'Edit', user_leafe_path(@user, @leave)
+\|
+= link_to 'Back', user_leafe_path(@user, @leave)

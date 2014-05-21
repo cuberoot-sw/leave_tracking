@@ -1,0 +1,24 @@
+= form_for [@user, @leave] do |f|
+  - if @leave.errors.any?
+    #error_explanation
+      %ul
+        - @leave.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :start_date, 'Start Date'
+    #leaves_start_date.input-append
+      = f.text_field :start_date, { 'data-format' => "yyyy-MM-dd" }
+      .add-on
+        %i{'data-time-icon' => "icon-time", 'data-date-icon' => "icon-calendar"}
+  .field
+    = f.label :end_date, 'End Date'
+    #leaves_end_date.input-append
+      = f.text_field :end_date, { 'data-format' => "yyyy-MM-dd" }
+      .add-on
+        %i{'data-time-icon' => "icon-time", 'data-date-icon' => "icon-calendar"}
+  .field
+    = f.label :reason
+    = f.text_field :reason
+  .actions
+    = f.submit 'Save'
