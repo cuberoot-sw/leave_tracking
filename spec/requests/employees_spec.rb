@@ -17,7 +17,7 @@ describe "Employee" do
     # then
     page.current_path.should eq(profile_path(@user))
     page.should have_content(Date.today.strftime('%d %b %Y'))
-    page.should have_content(@user.date_of_joining)
+    page.should have_content(Date.today.strftime('%d %b %Y'))
   end
 
 end

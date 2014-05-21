@@ -3,10 +3,42 @@
     %h3 Profile
   .row-fluid
     .span6
-      %p
-        %strong Name:
-        = @user.name
-      %p
-        %strong Date Of Birth
-        = @user.date_of_birth.strftime('%d %b %Y')
-
+      .widget-container
+        %p
+          %strong Name:
+          = @user.name
+        %p
+          %strong Email:
+          = @user.email
+        %p
+          %strong Alternate Email:
+          = @user.alternate_email
+        %p
+          %strong Date Of Birth:
+          = @user.date_of_birth.strftime('%d %b %Y') if @user.date_of_birth.present?
+        %p
+          %strong Date Of Joining:
+          = @user.date_of_joining.strftime('%d %b %Y') if @user.date_of_joining
+    .span6
+      .widget-container
+        %p
+          %strong Profile Picture:
+          = image_tag @user.profile_pic_url, :class => 'profile-pic' if @user.profile_pic.present?
+        %p
+          %strong Phone Number:
+          = @user.phone_number if @user.phone_number.present?
+        %p
+          %strong Alternate Phone Number:
+          = @user.alternate_phone_number if @user.alternate_phone_number.present?
+        %p
+          %strong Local Address:
+          = @user.local_address if @user.local_address.present?
+        %p
+          %strong Permanent Address:
+          = @user.permanent_address if @user.permanent_address.present?
+        %p
+          %strong Skype:
+          = @user.skype_id if @user.skype_id.present?
+        %p
+          %strong Github:
+          = @user.github_id if @user.github_id.present?
