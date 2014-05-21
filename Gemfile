@@ -13,7 +13,7 @@ gem 'coffee-rails', '~> 4.0.0'
 # gem 'therubyracer',  platforms: :ruby
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
+gem 'jquery-rails', '3.1.0'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -34,21 +34,21 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 # gem 'capistrano-rails', group: :development
 
 # Use debugger
-gem 'debugger', group: [:development, :test]
-#
-gem 'pg'
-gem 'devise'
-gem 'haml'
-gem 'simple_form'
-gem 'cancan'
-gem 'haml-rails'
-gem 'will_paginate'
+gem 'debugger', '1.6.6', group: [:development, :test]
 
-gem "capybara", :group => [:development, :test]
-gem "factory_girl_rails", :group => [:development, :test]
-gem "launchy", :group => [:development, :test]
-gem "rspec-rails", :group => [:development, :test]
-gem "database_cleaner", :group => [:development, :test]
-gem "devise_invitable"
-gem "email_spec", :group => [:development, :test]
-gem 'carrierwave'
+gem 'pg', '0.17.1'
+gem 'devise', '3.2.4'
+gem 'haml', '4.0.5'
+gem 'simple_form', '3.0.2'
+gem 'cancan', '1.6.10'
+gem 'haml-rails', '0.5.3'
+gem 'will_paginate', '3.0.5'
+
+gem "capybara", '2.2.1', :group => [:development, :test]
+gem "factory_girl_rails", '4.4.1', :group => [:development, :test]
+gem "launchy", '2.4.2',  :group => [:development, :test]
+gem "rspec-rails", '2.14.2', :group => [:development, :test]
+gem "database_cleaner", '1.2.0', :group => [:development, :test]
+gem "devise_invitable", '1.3.5'
+gem "email_spec", '1.5.0', :group => [:development, :test]
+gem 'carrierwave', '0.10.0'
