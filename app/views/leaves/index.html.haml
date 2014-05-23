@@ -1,22 +1,27 @@
-%h1 Pending Leaves
+.content-widgets.light-gray
+  .widget-head.orange
+    %h3 Pending Leaves
+  .widget-container
+    %br
+    %br
+    #data-table_wrapper.dataTables_wrapper.form-inline
+      %table#data-table.table.table-striped.table-bordered.dataTable
+        %tr
+          %th Applied By
+          %th Start date
+          %th End date
+          %th Number Of Days
+          %th Status
+          %th Reason
+          %th{colspan: current_user.is_admin? ? 3 : 1} Action
 
-%table
-  %tr
-    %th Applied By
-    %th Start date
-    %th End date
-    %th Number Of Days
-    %th Status
-    %th Reason
-    %th
-
-  - @leaves.each do |leave|
-    %tr
-      %td= leave.user.name
-      %td= leave.start_date
-      %td= leave.end_date
-      %td= leave.no_of_days
-      %td= leave.status
-      %td= leave.reason
-      //%td= render_links(leave)
+        - @leaves.each do |leave|
+          %tr
+            %td= leave.user.name
+            %td= leave.start_date
+            %td= leave.end_date
+            %td= leave.no_of_days
+            %td= leave.status
+            %td= leave.reason
+            = render_links(leave)
 %br

@@ -41,4 +41,36 @@ describe LeavesController do
     end
   end
 
+  describe 'approve action' do
+    it "should approve pending leave" do
+      @leave = FactoryGirl.create(:apply_leave, :user_id => @user.id)
+      get :approve, {:user_id => @user.id, :id => @leave.id}
+      expect(response).to redirect_to(leaves_path)
+      @leave = Leave.find(@leave.id)
+      @leave.status.should eq('approved')
+    end
+  end
+
+  describe 'reject action' do
+    it "should reject pending leave" do
+      @leave = FactoryGirl.create(:apply_leave, :user_id => @user.id)
+      get :reject, {:user_id => @user.id, :id => @leave.id}
+      expect(response).to redirect_to(leaves_path)
+      @leave = Leave.find(@leave.id)
+      @leave.status.should eq('rejected')
+    end
+  end
+
+  describe 'cancel action' do
+    it "should cancel leave" do
+      @leave = FactoryGirl.create(:apply_leave, :user_id => @user.id)
+      get :cancel, {:user_id => @user.id, :id => @leave.id}
+      expect(response).to redirect_to(leaves_path)
+      @leave = Leave.find(@leave.id)
+      @leave.status.should eq('cancelled')
+    end
+  end
+
+
+
 end

@@ -4,7 +4,13 @@ Rails.application.routes.draw do
   end
 
   resources :users, :only => [:index] do
-    resources :leaves
+    resources :leaves do
+      member do
+        get 'approve'
+        get 'reject'
+        get 'cancel'
+      end
+    end
   end
 
   resources :leaves, :only => [:index]

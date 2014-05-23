@@ -67,5 +67,33 @@ describe "Admin" do
     # then
     page.should have_link('Approve')
     page.should have_link('Reject')
+
+    # when
+    click_link 'Approve'
+
+    # then
+    page.should have_content('Leave was successfully Approved.')
+    Leave.find(@leave.id).status.should eq('approved')
   end
+
+  it "should reject pending leave" do
+    # given
+    visit root_path
+    @leave = FactoryGirl.create(:apply_leave, :user_id => @user.id)
+
+    # when
+    click_link 'Manage Leaves'
+
+    # then
+    page.should have_link('Approve')
+    page.should have_link('Reject')
+
+    # when
+    click_link 'Reject'
+
+    # then
+    page.should have_content('Leave was successfully Rejected.')
+    Leave.find(@leave.id).status.should eq('rejected')
+  end
+
  end

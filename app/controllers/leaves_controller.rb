@@ -7,7 +7,7 @@ class LeavesController < ApplicationController
     if current_user.is_admin?
       @leaves = Leave.where(status: 'pending')
     else
-      @leaves = current_user.leaves.where(status: 'pendin')
+      @leaves = current_user.leaves
     end
   end
 
@@ -64,6 +64,30 @@ class LeavesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to leaves_url, notice: 'Leave was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def approve
+    @leave = Leave.find(params[:id])
+    @leave.approve!
+    if @leave.save
+      redirect_to leaves_url, notice: 'Leave was successfully Approved.'
+    end
+  end
+
+  def reject
+    @leave = Leave.find(params[:id])
+    @leave.reject!
+    if @leave.save
+      redirect_to leaves_url, notice: 'Leave was successfully Rejected.'
+    end
+  end
+
+  def cancel
+    @leave = Leave.find(params[:id])
+    @leave.cancel!
+    if @leave.save
+      redirect_to leaves_url, notice: 'Leave was successfully Cancelled.'
     end
   end
 
