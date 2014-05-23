@@ -1,7 +1,11 @@
-%h1 Editing leafe
+.content-widgets.gray
+  .widget-head.orange
+    %h3 Editing Leave
+  .widget-container
+    = render 'form'
 
-= render 'form'
-
-= link_to 'Show', user_leafe_path(@user, @leave)
-\|
-= link_to 'Back', user_leaves_path(@user)
+    = link_to user_leafe_path(@user, @leave) do
+      %i.icon-reorder{ title: 'View' }
+    \|
+    = link_to leaves_path do
+      %i.icon-arrow-left{ title: 'Back' }

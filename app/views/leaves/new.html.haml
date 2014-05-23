@@ -1,5 +1,8 @@
-%h1 New leafe
+.content-widgets.gray
+  .widget-head.orange
+    %h3 New Leave
+  .widget-container
+    = render 'form'
 
-= render 'form'
-
-= link_to 'Back', user_leaves_path(@user)
+    = link_to leaves_path do
+      %i.icon-arrow-left{ title: 'Back' }

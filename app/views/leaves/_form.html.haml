@@ -5,20 +5,27 @@
         - @leave.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
-    = f.label :start_date, 'Start Date'
-    #leaves_start_date.input-append
-      = f.text_field :start_date, { 'data-format' => "yyyy-MM-dd" }
-      .add-on
-        %i{'data-time-icon' => "icon-time", 'data-date-icon' => "icon-calendar"}
-  .field
-    = f.label :end_date, 'End Date'
-    #leaves_end_date.input-append
-      = f.text_field :end_date, { 'data-format' => "yyyy-MM-dd" }
-      .add-on
-        %i{'data-time-icon' => "icon-time", 'data-date-icon' => "icon-calendar"}
-  .field
-    = f.label :reason
-    = f.text_field :reason
-  .actions
-    = f.submit 'Save'
+  .control-group
+    .control-label
+      = f.label :start_date, 'Start Date'
+    .controls
+      #leaves_start_date.input-append
+        = f.text_field :start_date, { 'data-format' => "yyyy-MM-dd" }
+        .add-on
+          %i{'data-time-icon' => "icon-time", 'data-date-icon' => "icon-calendar"}
+  .control-group
+    .control-label
+      = f.label :end_date, 'End Date'
+    .controls
+      #leaves_end_date.input-append
+        = f.text_field :end_date, { 'data-format' => "yyyy-MM-dd" }
+        .add-on
+          %i{'data-time-icon' => "icon-time", 'data-date-icon' => "icon-calendar"}
+  .control-group
+    .control-label
+      = f.label :reason
+    .controls
+      = f.text_field :reason
+  .control-group
+    .controls
+      = f.submit 'Save', :class => 'btn btn-danger'

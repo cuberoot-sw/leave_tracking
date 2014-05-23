@@ -4,7 +4,8 @@
   .widget-container
     = render 'form'
 
-    = link_to 'Back', setting_holidays_path(@setting)
+    = link_to setting_holidays_path do
+      %i.icon-arrow-left{ title: 'Back' }
 
 :javascript
   $(function () {
