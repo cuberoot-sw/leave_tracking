@@ -4,7 +4,11 @@ class LeavesController < ApplicationController
   # GET /leaves
   # GET /leaves.json
   def index
-    @leaves = Leave.all
+    if current_user.is_admin?
+      @leaves = Leave.where(status: 'pending')
+    else
+      @leaves = current_user.leaves.where(status: 'pendin')
+    end
   end
 
   # GET /leaves/1

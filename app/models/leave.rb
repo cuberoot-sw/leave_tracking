@@ -10,4 +10,23 @@ class Leave < ActiveRecord::Base
       errors.add(:start_date, "must be earlier than end date")
     end
   end
+
+
+  # state_machine
+  state_machine :status, :initial => :pending do
+    event :approve do
+      transition [:pending] => :approved
+    end
+
+    event :reject do
+      transition [:pending] => :rejected
+    end
+
+    event :cancel do
+      transition [:pending, :approved, :rejected] => :cancelled
+    end
+
+    state :approved, :pending, :rejected, :cancelled
+  end
+
 end

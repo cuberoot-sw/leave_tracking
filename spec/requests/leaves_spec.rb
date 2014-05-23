@@ -8,6 +8,7 @@ describe "Users" do
     @user = FactoryGirl.create(:employee)
     login(@user)
   end
+
   it "should apply new leave" do
     # given
     visit root_path
@@ -32,3 +33,39 @@ describe "Users" do
 
   end
 end
+
+describe "Admin" do
+  before(:each) do
+    @user = FactoryGirl.create(:user)
+    login(@user)
+  end
+
+  it "should able to pending leaves" do
+    # given
+    visit root_path
+    @leave = FactoryGirl.create(:apply_leave, :user_id => @user.id)
+
+    # when
+    click_link 'Manage Leaves'
+
+    # then
+    page.should have_content('Pending Leaves')
+    page.should have_content('Applied By')
+    page.should have_content('Number Of Days')
+
+    page.should have_content(@user.name)
+  end
+
+  it "should approve pending leave" do
+    # given
+    visit root_path
+    @leave = FactoryGirl.create(:apply_leave, :user_id => @user.id)
+
+    # when
+    click_link 'Manage Leaves'
+
+    # then
+    page.should have_link('Approve')
+    page.should have_link('Reject')
+  end
+ end

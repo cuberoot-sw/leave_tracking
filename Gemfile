@@ -52,3 +52,4 @@ gem "database_cleaner", '1.2.0', :group => [:development, :test]
 gem "devise_invitable", '1.3.5'
 gem "email_spec", '1.5.0', :group => [:development, :test]
 gem 'carrierwave', '0.10.0'
+gem 'state_machine'

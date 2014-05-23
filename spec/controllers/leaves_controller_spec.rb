@@ -33,4 +33,12 @@ describe LeavesController do
     end
   end
 
+  describe 'Leave status' do
+    it "should be pending by default" do
+      post :create, {:leave => FactoryGirl.attributes_for(:apply_leave), :user_id => @user.id}
+      @leave = Leave.last
+      @leave.status.should eq('pending')
+    end
+  end
+
 end
