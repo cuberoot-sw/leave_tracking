@@ -5,6 +5,8 @@ class Leave < ActiveRecord::Base
 
   validate :validate_dates
 
+  # after_save :notify_email
+
   def validate_dates
     if (start_date.present? && end_date.present? && (start_date > end_date))
       errors.add(:start_date, "must be earlier than end date")
@@ -29,4 +31,9 @@ class Leave < ActiveRecord::Base
     state :approved, :pending, :rejected, :cancelled
   end
 
+  def notify_email
+    if pending?
+      LeaveMailer.notify_pending_leave(self).deliver!
+    end
+  end
 end

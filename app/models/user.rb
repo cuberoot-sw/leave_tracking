@@ -34,4 +34,8 @@ class User < ActiveRecord::Base
     end
   end
 
+  def manager
+    User.where(id: self.manager_id).first
+  end
+
 end
