@@ -6,7 +6,10 @@ module LeavesHelper
         content_tag(:td) { link_to 'Reject', reject_user_leafe_path(current_user, leave)}
       end +
       if leave.user == current_user
-        content_tag(:td) { link_to 'Cancel', cancel_user_leafe_path(current_user, leave)}
+        content_tag(:td) { link_to 'Cancel', cancel_user_leafe_path(current_user, leave)} +
+        content_tag(:td) { link_to 'Edit', edit_user_leafe_path(current_user, leave) } +
+        content_tag(:td) { link_to 'Show', user_leafe_path(current_user, leave) } +
+        content_tag(:td) { link_to 'Destroy', [current_user, leave], :method => :delete, :data => { :confirm => 'Are you sure?' } }
       end
     else
       content_tag(:td) { link_to 'Cancel', cancel_user_leafe_path(current_user, leave)} +

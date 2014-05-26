@@ -121,4 +121,16 @@ describe "Admin" do
     Leave.find(@leave.id).status.should eq('rejected')
   end
 
+  it "should has facility to edit/delete his leaves" do
+    # given
+    @leave = FactoryGirl.create(:apply_leave, :user_id => @user.id)
+
+    # when
+    visit leaves_path
+
+    # then
+    page.should have_link('Edit')
+    page.should have_link('Destroy')
+  end
+
  end
