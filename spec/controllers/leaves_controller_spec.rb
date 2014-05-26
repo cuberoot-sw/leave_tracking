@@ -129,7 +129,4 @@ describe LeavesController do
       response.should render_template(:show)
     end
   end
-
-
-
 end
