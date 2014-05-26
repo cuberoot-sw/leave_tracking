@@ -48,8 +48,8 @@ class LeavesController < ApplicationController
   # PATCH/PUT /leaves/1.json
   def update
     respond_to do |format|
-      if @leave.update(leafe_params)
-        format.html { redirect_to @leave, notice: 'Leave was successfully updated.' }
+      if @leave.update(leave_params)
+        format.html { redirect_to user_leafe_path(@user, @leave), notice: 'Leave was successfully updated.' }
         format.json { render :show, status: :ok, location: @leave }
       else
         format.html { render :edit }

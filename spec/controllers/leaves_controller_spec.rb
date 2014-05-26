@@ -71,6 +71,65 @@ describe LeavesController do
     end
   end
 
+  describe 'edit action' do
+    it "assigns requested leave to @leave" do
+      leave = FactoryGirl.create(:apply_leave, :user_id => @user.id)
+      get :edit, {:id => leave.id, :user_id => @user.id}
+      assigns(:leave).should eq(leave)
+    end
+
+    it "should render edit template" do
+      leave = FactoryGirl.create(:apply_leave, :user_id => @user.id)
+      get :edit, {:id => leave.id, :user_id => @user.id}
+      response.should render_template(:edit)
+    end
+  end
+
+  describe 'update action' do
+    before do
+      @leave = FactoryGirl.create(:apply_leave, :user_id => @user.id)
+    end
+
+    it "should update requested leave" do
+      @leave.reason = 'edited reason'
+      put :update, {:leave => @leave.attributes,
+                    :id => @leave.id,
+                    :user_id => @user.id}
+      assigns(:leave).should eq(@leave)
+    end
+
+    it "should redirect to updated leave" do
+      @leave.reason = 'edited reason'
+      put :update, {:leave => @leave.attributes,
+                    :id => @leave.id,
+                    :user_id => @user.id}
+      response.should redirect_to(user_leafe_path(@user, @leave))
+    end
+  end
+
+  describe 'delete action' do
+    it "should delete a leave" do
+      leave = FactoryGirl.create(:apply_leave, :user_id => @user.id)
+      expect {
+        delete :destroy, id: leave.id, :user_id => @user.id
+      }.to change(Leave, :count).by(-1)
+    end
+  end
+
+  describe "show action" do
+    it "assigns the requested leave as @leave" do
+      leave = FactoryGirl.create(:apply_leave, :user => @user)
+      get :show, {:user_id => @user.id, :id => leave.id}
+      assigns(:leave).should eq(leave)
+    end
+
+    it 'should show requested leave' do
+      leave = FactoryGirl.create(:apply_leave, :user => @user)
+      get :show, {:user_id => @user.id, :id => leave.id}
+      response.should render_template(:show)
+    end
+  end
+
 
 
 end

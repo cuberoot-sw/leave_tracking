@@ -32,6 +32,31 @@ describe "Users" do
     page.should have_content Date.today.strftime('%d %b %Y')
 
   end
+
+  it "should edit leave" do
+    # given
+    visit root_path
+    @leave = FactoryGirl.create(:apply_leave, :user_id => @user.id)
+
+    # when
+    click_link 'Manage Leaves'
+
+    # then
+    page.should have_link('Edit')
+
+    # when
+    click_link('Edit')
+    fill_in 'Start Date', :with => Date.today + 1
+    fill_in 'End Date', :with => Date.today + 3
+    fill_in 'Reason', :with => 'Edit Test Reason'
+    click_button 'Save'
+
+    # then
+    page.should have_content('Leave was successfully updated.')
+    page.current_path.should eq("/users/#{@user.id}/leaves/#{Leave.last.id}")
+    page.should have_content 'Edit Test Reason'
+
+  end
 end
 
 describe "Admin" do
