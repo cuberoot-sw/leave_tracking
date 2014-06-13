@@ -1,11 +1,16 @@
 .content-widgets.light-gray
   .widget-head.orange
-    %h3 Pending Leaves
+    - title = (params[:status] || 'Pending').capitalize + ' Leaves'
+    %h3= title
+  %br
   .widget-container
+    = link_to 'pending', leaves_path(status: 'pending'), :class => 'btn btn-orange'
+    = link_to 'Approved', leaves_path(status: 'approved'), :class => 'btn btn-orange'
+    = link_to 'Rejected', leaves_path(status: 'rejected'), :class => 'btn btn-orange'
     %br
     %br
     #data-table_wrapper.dataTables_wrapper.form-inline
-      %table#data-table.table.table-striped.table-bordered.dataTable
+      %table#data-table.table.table-bordered.dataTable
         %tr
           %th Applied By
           %th Start date

@@ -6,9 +6,11 @@ class LeavesController < ApplicationController
   # GET /leaves.json
   def index
     if current_user.is_admin?
-      @leaves = Leave.where(status: 'pending')
+      status = params[:status] ? params[:status] : 'pending'
+      @leaves = Leave.where(status: status)
     else
-      @leaves = current_user.leaves
+      status = params[:status] ? params[:status] : 'pending'
+      @leaves = current_user.leaves.where(status: status)
     end
   end
 
