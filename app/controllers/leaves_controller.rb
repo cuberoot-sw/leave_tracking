@@ -94,6 +94,7 @@ class LeavesController < ApplicationController
     @leave = Leave.find(params[:id])
     @leave.cancel!
     if @leave.save
+      @leave.notify_email
       redirect_to leaves_url, notice: 'Leave was successfully Cancelled.'
     end
   end
