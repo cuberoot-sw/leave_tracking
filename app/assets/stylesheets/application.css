@@ -18,4 +18,5 @@
  *= require theme/theme-wooden
  *= require custom
  *= require pagination
+ *= require bootstrap-modal
  */

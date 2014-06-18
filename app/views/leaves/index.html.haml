@@ -18,6 +18,7 @@
           %th Number Of Days
           %th Status
           %th Reason
+          %th Rejection Reason
           %th{colspan: current_user.is_admin? ? 3 : 1} Action
 
         - @leaves.each do |leave|
@@ -28,5 +29,19 @@
             %td= leave.no_of_days
             %td= leave.status
             %td= leave.reason
+            %td= leave.rejection_reason
             = render_links(leave)
 %br
+/ set up the modal to start hidden and fade in and out
+#reject_reasonModal.modal.fade
+  .modal-dialog
+    .modal-content
+      / dialog body
+      .modal-body
+        %button.close{"data-dismiss" => "modal", type: "button"} ×
+        %label Rejection Reason:
+        %input{type: 'hidden', id: 'leave_id'}
+        %textarea{name: 'reason', id: 'rejection_reason'}
+      / dialog buttons
+      .modal-footer
+        %button.btn.btn-primary.submit_reason{type: "button"} Submit

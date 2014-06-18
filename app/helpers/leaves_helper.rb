@@ -11,7 +11,7 @@ module LeavesHelper
       end +
       if leave.pending?
         content_tag(:td) { link_to 'Approve', approve_user_leafe_path(current_user, leave)} +
-        content_tag(:td) { link_to 'Reject', reject_user_leafe_path(current_user, leave)}
+        content_tag(:td) { "<input type=button id=#{leave.id} class='reject_btn prompt btn' value='Reject'/>".html_safe}
       end
     else
       content_tag(:td) { link_to 'Cancel', cancel_user_leafe_path(current_user, leave)} +

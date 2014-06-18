@@ -4,7 +4,7 @@ class LeaveMailer < ActionMailer::Base
     @leave = leave
     @user = @leave.user
     @mail_to = @user.manager.email
-    @subject = "New Leave Application By- @user.name"
+    @subject = "New Leave Application By- #{@user.name}"
     @from = @user.email
     setup_email(@mail_to, @subject, @from)
   end

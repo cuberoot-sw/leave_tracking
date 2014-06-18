@@ -37,6 +37,7 @@ class LeavesController < ApplicationController
 
     respond_to do |format|
       if @leave.save
+        @leave.notify_email
         format.html { redirect_to user_leafe_path(@user, @leave), notice: 'Leave was successfully created.' }
         format.json { render :show, status: :created, location: @leave }
       else
@@ -80,6 +81,7 @@ class LeavesController < ApplicationController
 
   def reject
     @leave = Leave.find(params[:id])
+    @leave.add_reason(params[:reason])
     @leave.reject!
     if @leave.save
       redirect_to leaves_url, notice: 'Leave was successfully Rejected.'

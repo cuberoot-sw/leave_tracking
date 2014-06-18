@@ -7,13 +7,16 @@ Rails.application.routes.draw do
     resources :leaves do
       member do
         get 'approve'
-        get 'reject'
         get 'cancel'
       end
     end
   end
 
-  resources :leaves, :only => [:index]
+  resources :leaves, :only => [:index] do
+    member do
+      get 'reject'
+    end
+  end
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

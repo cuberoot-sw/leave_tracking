@@ -19,3 +19,5 @@
 //= require stepy.jquery
 //= require bootstrap-datetimepicker.min
 //= require leaves
+//= require bootstrap-modalmanager
+//= require bootstrap-modal
