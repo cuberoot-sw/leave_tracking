@@ -18,7 +18,18 @@ $(document).ready(function(){
   });
 
   $('.submit_reason').click(function(){
-    var url = '/leaves/'+$('#reject_reasonModal #leave_id').val()+'/reject?reason='+$('#reject_reasonModal #rejection_reason').val();
-    window.location.href = url;
+    var reason = $('#reject_reasonModal #rejection_reason').val(),
+    url;
+    if(reason === ""){
+      $('#reject_reasonModal .error_msg').html('Rejection reason is required.');
+      return false;
+    }else{
+      url = '/leaves/'+$('#reject_reasonModal #leave_id').val()+'/reject?reason='+reason;
+      window.location.href = url;
+    }
+  });
+
+  $('.cancel_reason').click(function(){
+    $('#reject_reasonModal').modal('hide');
   });
 });

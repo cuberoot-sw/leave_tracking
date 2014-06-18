@@ -39,9 +39,11 @@
       / dialog body
       .modal-body
         %button.close{"data-dismiss" => "modal", type: "button"} ×
+        %p.error_msg
         %label Rejection Reason:
         %input{type: 'hidden', id: 'leave_id'}
         %textarea{name: 'reason', id: 'rejection_reason'}
       / dialog buttons
       .modal-footer
         %button.btn.btn-primary.submit_reason{type: "button"} Submit
+        %button.btn.btn-primary.cancel_reason{type: "button"} Cancel

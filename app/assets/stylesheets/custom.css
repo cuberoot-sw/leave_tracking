@@ -11,3 +11,6 @@
   height: 50px!important;
   width: 50px!important;
 }
+#reject_reasonModal .error_msg{
+  color: #CE1010;
+}
