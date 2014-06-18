@@ -34,6 +34,10 @@ class Leave < ActiveRecord::Base
   def notify_email
     if pending?
       LeaveMailer.notify_pending_leave(self).deliver
+    elsif approved?
+      LeaveMailer.notify_approved_leave(self).deliver
+    elsif rejected?
+      LeaveMailer.notify_rejected_leave(self).deliver
     end
   end
 

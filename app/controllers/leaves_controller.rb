@@ -75,6 +75,7 @@ class LeavesController < ApplicationController
     @leave = Leave.find(params[:id])
     @leave.approve!
     if @leave.save
+      @leave.notify_email
       redirect_to leaves_url, notice: 'Leave was successfully Approved.'
     end
   end
@@ -84,6 +85,7 @@ class LeavesController < ApplicationController
     @leave.add_reason(params[:reason])
     @leave.reject!
     if @leave.save
+      @leave.notify_email
       redirect_to leaves_url, notice: 'Leave was successfully Rejected.'
     end
   end
