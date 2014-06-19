@@ -22,7 +22,7 @@
       = @leave.approved_on
     %p
       %b Approved by:
-      = @leave.approved_by
+      = User.approved_by(@leave.approved_by)
     %p
       %b Rejection reason:
       = @leave.rejection_reason

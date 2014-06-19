@@ -38,4 +38,10 @@ class Leave < ActiveRecord::Base
   def add_reason(reason)
     self.rejection_reason = reason
   end
+
+  def update_leave(user)
+    self.approved_by = user.id
+    self.approved_on = Time.now
+    self.save
+  end
 end

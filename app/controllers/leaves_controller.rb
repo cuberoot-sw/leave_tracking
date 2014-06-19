@@ -73,8 +73,8 @@ class LeavesController < ApplicationController
 
   def approve
     @leave = Leave.find(params[:id])
-    @leave.approve!
-    if @leave.save
+    if @leave.approve!
+      @leave.update_leave(current_user)
       @leave.notify_email
       redirect_to leaves_url, notice: 'Leave was successfully Approved.'
     end

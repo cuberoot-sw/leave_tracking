@@ -18,6 +18,10 @@ class User < ActiveRecord::Base
 
   mount_uploader :profile_pic, ProfilePicUploader
 
+  scope :approved_by, lambda{ |id|
+    where(id: id).first.name
+  }
+
   ROLES = %w[employee admin]
 
   def role?(base_role)
