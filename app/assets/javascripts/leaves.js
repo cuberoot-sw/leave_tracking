@@ -1,11 +1,4 @@
 $(document).ready(function(){
-  $('#leaves_start_date').datetimepicker({
-    pickTime: false,
-  });
-
-  $('#leaves_end_date').datetimepicker({
-    pickTime: false,
-  });
 
   $('.reject_btn').click(function(){
     var id = $(this).attr('id');
@@ -16,6 +9,9 @@ $(document).ready(function(){
       "show" : true
     });
   });
+
+  $( "#leaves_start_date" ).datepicker({dateFormat: "yy-mm-dd"});
+  $( "#leaves_end_date" ).datepicker({dateFormat: "yy-mm-dd"});
 
   $('.submit_reason').click(function(){
     var reason = $('#reject_reasonModal #rejection_reason').val(),
