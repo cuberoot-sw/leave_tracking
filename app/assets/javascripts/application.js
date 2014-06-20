@@ -11,12 +11,13 @@
 // about supported directives.
 //
 //= require jquery-1.10.2
+//= require jquery.turbolinks
 //= require jquery_ujs
-//= require turbolinks
-//= require jquery-ui-1.10.4.custom.min
 //= require bootstrap.min
 //= require jquery.validate
 //= require stepy.jquery
-//= require leaves
 //= require bootstrap-modalmanager
 //= require bootstrap-modal
+//= require jquery-ui-1.10.4.custom.min
+//= require leaves
+//= require turbolinks
