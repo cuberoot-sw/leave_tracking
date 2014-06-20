@@ -19,13 +19,13 @@
       = @leave.reason
     %p
       %b Approved on:
-      = @leave.approved_on
+      = @leave.approved_on if @leave.approved_on.present?
     %p
       %b Approved by:
-      = User.approved_by(@leave.approved_by)
+      = User.approved_by(@leave.approved_by) if @leave.approved_by.present?
     %p
       %b Rejection reason:
-      = @leave.rejection_reason
+      = @leave.rejection_reason if @leave.rejection_reason.present?
 
     = link_to edit_user_leafe_path(@user, @leave) do
       %i.icon-edit{ title: 'Edit' }
