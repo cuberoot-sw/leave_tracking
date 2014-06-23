@@ -18,7 +18,7 @@ class HolidaysController < ApplicationController
   # GET /holidays/new
   def new
     @setting = Setting.find(params[:setting_id])
-    @holiday = Holiday.new
+    @holiday = @setting.holidays.new
   end
 
   # GET /holidays/1/edit
@@ -28,6 +28,8 @@ class HolidaysController < ApplicationController
   # POST /holidays
   # POST /holidays.json
   def create
+    @setting = Setting.find(params[:setting_id])
+    @holiday = @setting.holidays.new(holiday_params)
     respond_to do |format|
       if @holiday.save
         format.html { redirect_to [@setting, @holiday], notice: 'Holiday was successfully created.' }
