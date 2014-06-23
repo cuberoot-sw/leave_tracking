@@ -29,17 +29,13 @@
   .control-group
     %label.control-label Date of Birth
     .controls
-      #date_of_birth.input-append
-        = f.text_field :date_of_birth, { 'data-format' => "yyyy-MM-dd" }
-        %span.add-on
-          %i{"data-date-icon" => "icon-calendar", "data-time-icon" => "icon-time"}
+      .input-append
+        = f.text_field :date_of_birth, id: "date_of_birth"
   .control-group
     %label.control-label Date of Join
     .controls
-      #date_of_join.input-append
-        = f.text_field :date_of_joining, { 'data-format' => "yyyy-MM-dd" }
-        %span.add-on
-          %i{"data-date-icon" => "icon-calendar", "data-time-icon" => "icon-time"}
+      .input-append
+        = f.text_field :date_of_joining, id: "date_of_join"
   .control-group
     %label.control-label Password
     .controls
