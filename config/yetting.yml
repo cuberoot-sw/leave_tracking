@@ -1,2 +1,6 @@
 development:
   leave_rate_per_month: 1.5
+test:
+  leave_rate_per_month: 1.5
+production:
+  leave_rate_per_month: 1.5
