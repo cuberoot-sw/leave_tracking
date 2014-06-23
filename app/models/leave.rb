@@ -53,8 +53,8 @@ class Leave < ActiveRecord::Base
 
   ## if use is newly joined then total_leaves = months_in_year from joining * leave_rate_per_month
   ## else 12 * leave_rate_per_month
-  def calculate_total_leaves
-    user = self.user
+  def self.calculate_total_leaves(curr_user)
+    user = curr_user || self.user
     curr_year = Time.now.year
     if curr_year == (user.date_of_joining).year
       diff = ("#{curr_year}/12/31".to_date) - (user.date_of_joining.to_date)
@@ -78,14 +78,13 @@ class Leave < ActiveRecord::Base
   end
 
   # calculate balance leaves
-  def balance_leaves
+  def self.balance_leaves(user)
     ## Total number of leaves in year = total_leaves
     ## Total number of applied leaves = applied_leaves
     ## Remaining number of leaves = remaining_leaves
     total_leaves = calculate_total_leaves
-    applied_leaves = calculate_applied_leaves
-    remaining_leaves = total_leaves.to_f - applied_leaves.to_f
-    remaining_leaves
+    # remaining_leaves = total_leaves.to_f - applied_leaves.to_f
+    #remaining_leaves
   end
 
 end

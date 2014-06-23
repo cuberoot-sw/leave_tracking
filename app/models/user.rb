@@ -22,6 +22,16 @@ class User < ActiveRecord::Base
     where(id: id).first.name
   }
 
+  scope :manager, lambda {
+    where(id: self.manager_id).first
+  }
+
+  scope :birthdays, lambda {
+    where("extract(month from date_of_birth) = ? AND
+           extract(day from date_of_birth) = ?",
+           Time.now.month, Time.now.day)
+  }
+
   ROLES = %w[employee admin]
 
   def role?(base_role)
@@ -40,6 +50,11 @@ class User < ActiveRecord::Base
 
   def manager
     User.where(id: self.manager_id).first
+  end
+
+  def collect_leaves_count
+    total_leaves = Leave.calculate_total_leaves(self)
+    return total_leaves
   end
 
 end

@@ -1,2 +1,21 @@
-%p
-  hello
+.content-widgets.gray
+  .widget-head.orange
+    %h3 DashBoard
+  .widget-container
+    %p
+      %b Date Of Joining:
+      = current_user.date_of_joining.strftime('%d %b %Y')
+    %p
+      %b Manager:
+      = manager_info(current_user)
+    %p
+      %b Your Total Leaves:
+      = @total_leaves.to_i
+    %p
+      %b Your Balance Leaves:
+    %hr
+    %h3 Todays Birthdays
+    %ul
+      -@birthdays.each do |user|
+        %li
+          = "#{user.name} ( #{user.email} ) "
