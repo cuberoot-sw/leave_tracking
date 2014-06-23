@@ -5,7 +5,8 @@ end
 
 describe "Users" do
   before(:each) do
-    @user = FactoryGirl.create(:employee)
+    @admin = FactoryGirl.create(:user)
+    @user = FactoryGirl.create(:employee, manager_id: @admin.id)
     login(@user)
   end
 
@@ -20,9 +21,9 @@ describe "Users" do
     page.current_path.should eq("/users/#{@user.id}/leaves/new")
 
     # when
-    fill_in 'Start Date', :with => Date.today
-    fill_in 'End Date', :with => Date.today
-    fill_in 'Reason', :with => 'Test Reason'
+    fill_in 'leaves_start_date', :with => Date.today
+    fill_in 'leaves_end_date', :with => Date.today
+    fill_in 'leave_reason', :with => 'Test Reason'
     click_button 'Save'
 
     # then
@@ -46,9 +47,9 @@ describe "Users" do
 
     # when
     click_link('Edit')
-    fill_in 'Start Date', :with => Date.today + 1
-    fill_in 'End Date', :with => Date.today + 3
-    fill_in 'Reason', :with => 'Edit Test Reason'
+    fill_in 'leaves_start_date', :with => Date.today + 1
+    fill_in 'leaves_end_date', :with => Date.today + 3
+    fill_in 'leave_reason', :with => 'Edit Test Reason'
     click_button 'Save'
 
     # then
@@ -61,12 +62,14 @@ end
 
 describe "Admin" do
   before(:each) do
-    @user = FactoryGirl.create(:user)
-    login(@user)
+    @admin = FactoryGirl.create(:user)
+
+    login(@admin)
   end
 
   it "should able to pending leaves" do
     # given
+    @user = FactoryGirl.create(:employee, :manager_id => @admin.id)
     visit root_path
     @leave = FactoryGirl.create(:apply_leave, :user_id => @user.id)
 
@@ -83,6 +86,7 @@ describe "Admin" do
 
   it "should approve pending leave" do
     # given
+    @user = FactoryGirl.create(:employee, :manager_id => @admin.id)
     visit root_path
     @leave = FactoryGirl.create(:apply_leave, :user_id => @user.id)
 
@@ -103,6 +107,7 @@ describe "Admin" do
 
   it "should reject pending leave" do
     # given
+    @user = FactoryGirl.create(:employee, :manager_id => @admin.id)
     visit root_path
     @leave = FactoryGirl.create(:apply_leave, :user_id => @user.id)
 
@@ -123,7 +128,7 @@ describe "Admin" do
 
   it "should has facility to edit/delete his leaves" do
     # given
-    @leave = FactoryGirl.create(:apply_leave, :user_id => @user.id)
+    @leave = FactoryGirl.create(:apply_leave, :user_id => @admin.id)
 
     # when
     visit leaves_path

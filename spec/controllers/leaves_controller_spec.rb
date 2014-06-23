@@ -3,7 +3,8 @@ require 'spec_helper'
 describe LeavesController do
   before(:each) do
     @request.env["devise.mapping"] = Devise.mappings[:user]
-    @user = FactoryGirl.create(:employee)
+    @manager = FactoryGirl.create(:user)
+    @user = FactoryGirl.create(:employee, manager_id: @manager.id)
     sign_in @user
   end
 
