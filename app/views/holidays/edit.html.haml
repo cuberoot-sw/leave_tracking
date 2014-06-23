@@ -12,7 +12,11 @@
 
 :javascript
   $(function () {
-    $('#holiday_date').datetimepicker({
-      pickTime: false,
+    var year = $('#holiday_date').parent('.holiday_input').attr('id')
+    $( "#holiday_date" ).datepicker({
+      dateFormat: "yy-mm-dd",
+      defaultDate: new Date(year+"-01-01"),
+      minDate: new Date(year+"-01-01"),
+      maxDate: new Date(year+"-12-31")
     });
   });
