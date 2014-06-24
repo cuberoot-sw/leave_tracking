@@ -7,23 +7,25 @@
         %tr
           %th Date
           %th Occasion
-          %th
-          %th
-          %th
+          - if current_user.is_admin?
+            %th
+            %th
+            %th
 
         - @holidays.each do |holiday|
           %tr
             %td= holiday.date
             %td= holiday.occasion
-            %td
-              = link_to setting_holiday_path(holiday.setting, holiday) do
-                <i class='icon-reorder' title='view'></i>
-            %td
-              = link_to edit_setting_holiday_path(holiday.setting, holiday) do
-                <i class='icon-edit' title='edit'></i>
-            %td
-              = link_to [holiday.setting, holiday], :method => :delete, :data => { :confirm => 'Are you sure?' } do
-                <i class='icon-trash' title='delete'></i>
+            - if current_user.is_admin?
+              %td
+                = link_to setting_holiday_path(holiday.setting, holiday) do
+                  <i class='icon-reorder' title='view'></i>
+              %td
+                = link_to edit_setting_holiday_path(holiday.setting, holiday) do
+                  <i class='icon-edit' title='edit'></i>
+              %td
+                = link_to [holiday.setting, holiday], :method => :delete, :data => { :confirm => 'Are you sure?' } do
+                  <i class='icon-trash' title='delete'></i>
 
       %br
       .digg_pagination

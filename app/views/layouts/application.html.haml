@@ -54,6 +54,9 @@
                 = link_to 'Manage Leaves', leaves_path
               %li
                 = link_to 'Apply For Leave', new_user_leafe_path(current_user)
+              - unless current_user.is_admin?
+                %li
+                  = holidays_link
 
     .main-wrapper
       .container-fluid

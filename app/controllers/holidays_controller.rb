@@ -1,7 +1,6 @@
 class HolidaysController < ApplicationController
   before_action :set_holiday, only: [:show, :edit, :update, :destroy]
-  before_action :load_holiday, only: :create
-  load_and_authorize_resource
+  before_filter :check_is_admin?, :except => [:index]
 
   # GET /holidays
   # GET /holidays.json
@@ -77,8 +76,7 @@ class HolidaysController < ApplicationController
       params.require(:holiday).permit(:date, :occasion)
     end
 
-    def load_holiday
-      @setting = Setting.find(params[:setting_id])
-      @holiday = Holiday.new(holiday_params)
+    def check_is_admin?
+      current_user.is_admin?
     end
 end
