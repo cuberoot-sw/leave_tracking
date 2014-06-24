@@ -54,7 +54,8 @@ class User < ActiveRecord::Base
 
   def collect_leaves_count
     total_leaves = Leave.calculate_total_leaves(self)
-    return total_leaves
+    balance_leaves = Leave.balance_leaves(self)
+    return total_leaves, balance_leaves
   end
 
 end

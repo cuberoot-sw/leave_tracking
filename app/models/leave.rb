@@ -82,9 +82,17 @@ class Leave < ActiveRecord::Base
     ## Total number of leaves in year = total_leaves
     ## Total number of applied leaves = applied_leaves
     ## Remaining number of leaves = remaining_leaves
-    total_leaves = calculate_total_leaves
-    # remaining_leaves = total_leaves.to_f - applied_leaves.to_f
-    #remaining_leaves
+    total_leaves = calculate_total_leaves(user)
+    applied_leaves = total_applied_leaves(user)
+    remaining_leaves = total_leaves.to_f - applied_leaves.to_f
+    return remaining_leaves
+  end
+
+  def self.total_applied_leaves(user, year=false)
+    year = year || Time.now.year
+    no_of_days = Leave.where('extract(year from start_date) = ? AND
+                 user_id = ? ', year, user.id).sum(:no_of_days)
+    return no_of_days
   end
 
 end
