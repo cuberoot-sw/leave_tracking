@@ -1,6 +1,9 @@
 .content-widgets.light-gray
   .widget-head.orange
     %h3 Profile
+  %br
+  &nbsp; &nbsp; &nbsp;
+  = link_to 'Edit', edit_profile_path(@user, {edit_pass: false})
   .row-fluid
     .span6
       .widget-container
@@ -19,6 +22,9 @@
         %p
           %strong Date Of Joining:
           = @user.date_of_joining.strftime('%d %b %Y') if @user.date_of_joining
+        %p
+          %strong Blood Group:
+          = @user.blood_group
     .span6
       .widget-container
         %p

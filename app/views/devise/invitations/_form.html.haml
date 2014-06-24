@@ -36,18 +36,19 @@
     .controls
       .input-append
         = f.text_field :date_of_joining, id: "date_of_join"
-  .control-group
-    %label.control-label Password
-    .controls
-      = f.password_field :password, autocomplete: "off"
-  .control-group
-    %label.control-label Confirm Password
-    .controls
-      = f.password_field :password_confirmation, autocomplete: "off"
+  - unless params[:edit_pass]
+    .control-group
+      %label.control-label Password
+      .controls
+        = f.password_field :password, autocomplete: "off"
+    .control-group
+      %label.control-label Confirm Password
+      .controls
+        = f.password_field :password_confirmation, autocomplete: "off"
   .control-group
     %label.control-label Blood Group
     .controls
-      = f.select :blood_group, options_for_post_bloodgroup
+      = f.select :blood_group, options_for_bloodgroup(@user)
   .control-group
     %label.control-label Skype ID
     .controls
