@@ -28,4 +28,9 @@ $(document).ready(function(){
   $('.cancel_reason').click(function(){
     $('#reject_reasonModal').modal('hide');
   });
+
+  $('select#select_year').change(function(){
+    url = '/holidays?year='+$(this).val();
+    window.location.href = url;
+  });
 });

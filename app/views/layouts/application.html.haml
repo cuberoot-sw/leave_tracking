@@ -67,7 +67,7 @@
                 = link_to 'Apply For Leave', new_user_leafe_path(current_user)
               - unless current_user.is_admin?
                 %li
-                  = holidays_link
+                  =link_to 'Holiday List', holidays_path
             - if user_signed_in? && current_user.is_admin?
               %li
                 = link_to 'Settings', settings_path

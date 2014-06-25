@@ -1,6 +1,6 @@
 class HolidaysController < ApplicationController
   before_action :set_holiday, only: [:show, :edit, :update, :destroy]
-  before_filter :check_is_admin?, :except => [:index]
+  before_filter :check_is_admin?, :except => [:filter_holidays]
 
   # GET /holidays
   # GET /holidays.json
@@ -62,6 +62,12 @@ class HolidaysController < ApplicationController
       format.html { redirect_to setting_holidays_url }
       format.json { head :no_content }
     end
+  end
+
+  def filter_holidays
+    @year = params[:year] ? params[:year] : Time.now.year
+    @setting = Setting.where(year: @year).first
+    @holidays = @setting.holidays.order('date ASC').paginate(:page => params[:page])
   end
 
   private

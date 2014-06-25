@@ -1,0 +1,20 @@
+.content-widgets.light-gray
+  .widget-head.orange
+    %h3 Listing holidays
+  .widget-container
+    = select_tag 'select_year', options_from_collection_for_select(Setting.all, 'year', 'year', @year)
+    #data-table_wrapper.dataTables_wrapper.form-inline
+      %table#data-table.table.table-striped.table-bordered.dataTable
+        %tr
+          %th Date
+          %th Occasion
+
+        - @holidays.each do |holiday|
+          %tr
+            %td= holiday.date
+            %td= holiday.occasion
+
+      %br
+      .digg_pagination
+        = will_paginate @holidays, :container => false
+      %br
