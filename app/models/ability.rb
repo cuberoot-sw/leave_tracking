@@ -8,6 +8,7 @@ class Ability
     end
     if user.role? :employee
       can :manage, User
+      can :manage, Leave
     end
   end
 end
