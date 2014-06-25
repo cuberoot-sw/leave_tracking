@@ -21,3 +21,6 @@
 .settings-option{
   background-color: #ECECEC !important;
 }
+#error_explanation li{
+  color: #CE1010;
+}
