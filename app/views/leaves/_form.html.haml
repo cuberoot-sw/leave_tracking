@@ -1,10 +1,5 @@
 = form_for [@user, @leave] do |f|
-  - if @leave.errors.any?
-    #error_explanation
-      %ul
-        - @leave.errors.full_messages.each do |msg|
-          %li= msg
-
+  = render :partial => 'shared/error_messages', :locals => { :target => @leave }
   .control-group
     .control-label
       = f.label :start_date, 'Start Date'

@@ -1,10 +1,5 @@
 = form_for [@setting, @holiday], :html => {:class => 'form-horizontal'} do |f|
-  - if @holiday.errors.any?
-    #error_explanation
-      %ul
-        - @holiday.errors.full_messages.each do |msg|
-          %li= msg
-
+  = render :partial => 'shared/error_messages', :locals => { :target => @holiday }
   .control-group
     .control-label
       = f.label :date
