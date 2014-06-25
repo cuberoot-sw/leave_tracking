@@ -16,8 +16,22 @@
               .btn-group
                 .dropdown
                   -if user_signed_in?
-                    %a.btn.btn-notification(rel="nofollow" data-method="delete" href="/users/sign_out")
-                      %i.icon-lock
+                    %a.btn.btn-notification.dropdown-toggle{ 'data-toggle' => "dropdown"}
+                      %i.icon-cogs
+                    .dropdown-menu.pull-right.settings-option
+                      %a.msg-container.clearfix(rel="nofollow" href="#{edit_profile_path(current_user, {edit_pass: false})}")
+                        %span.notification-intro
+                          %i.icon-edit
+                          Edit Profile
+                      %a.msg-container.clearfix(rel="nofollow" href="#{edit_user_registration_path}")
+                        %span.notification-intro
+                          %i.icon-key
+                          Change Password
+                      %a.msg-container.clearfix(rel="nofollow" data-method="delete" href="/users/sign_out")
+                        %span.notification-intro
+                          %i.icon-lock
+                          Logout
+
 
     .leftbar.leftbar-close.clearfix
       .admin-info.clearfix
