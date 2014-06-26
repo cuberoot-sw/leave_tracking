@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    resources :users, :only => [:index, :edit, :update]
+  end
+
   resources :settings do
     resources :holidays
   end
@@ -27,6 +31,7 @@ Rails.application.routes.draw do
   put 'profile/:id' => 'users#profile_update', as: :profile_update
   get 'profile/:id/edit' => 'users#profile_edit', as: :edit_profile
   get 'holidays' => 'holidays#filter_holidays', as: :holidays
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
