@@ -19,5 +19,6 @@
 //= require bootstrap-modalmanager
 //= require bootstrap-modal
 //= require jquery-ui-1.10.4.custom.min
+//= require users
 //= require leaves
 //= require turbolinks
