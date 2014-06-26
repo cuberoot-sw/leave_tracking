@@ -42,6 +42,10 @@ class User < ActiveRecord::Base
     role == 'admin'
   end
 
+  def is_manager?
+    role == 'manager'
+  end
+
   def set_default_role
     if self.new_record?
       self.role = 'employee'

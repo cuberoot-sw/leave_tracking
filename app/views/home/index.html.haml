@@ -1,19 +1,31 @@
 .content-widgets.gray
   .widget-head.orange
     %h3 DashBoard
-  .widget-container
-    %p
-      %b Date Of Joining:
-      = current_user.date_of_joining.strftime('%d %b %Y')
-    %p
-      %b Manager:
-      = manager_info(current_user)
-    %p
-      %b Your Total Leaves:
-      = @total_leaves.to_i
-    %p
-      %b Your Balance Leaves:
-      = @balance_leaves.to_i
-
-    %hr
-    = render partial: 'birthdays_view'
+  .row-fluid
+    .span12
+      .widget-container
+        - if current_user.is_manager?
+          = link_to 'Invite Resource', new_user_invitation_path, :class => 'btn btn-danger'
+          %hr
+  .row-fluid
+    .span6
+      .widget-container
+        %p
+          %b Date Of Joining:
+          = current_user.date_of_joining.strftime('%d %b %Y')
+        %p
+          %b Manager:
+          = manager_info(current_user)
+    .span6
+      .widget-container
+        %p
+          %b Your Total Leaves:
+          = @total_leaves.to_i
+        %p
+          %b Your Balance Leaves:
+          = @balance_leaves.to_i
+  .row-fluid
+    .span12
+      .widget-container
+        %hr
+        = render partial: 'birthdays_view'
