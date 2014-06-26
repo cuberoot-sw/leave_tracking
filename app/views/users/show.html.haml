@@ -3,7 +3,8 @@
     %h3 Profile
   %br
   &nbsp; &nbsp; &nbsp;
-  = link_to 'Edit', edit_profile_path(@user, {edit_pass: false})
+  - if @user == current_user
+    = link_to 'Edit', edit_profile_path(@user, {edit_pass: false})
   .row-fluid
     .span6
       .widget-container

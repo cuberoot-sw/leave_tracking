@@ -1,21 +1,17 @@
-class UsersController < ApplicationController
-  def show
-    @user = User.find(params[:id])
+class Admin::UsersController < ApplicationController
+  def index
+    @users = User.paginate(:page => params[:page]).all
   end
 
-  def destroy
-
+  def edit
+   @user = User.find(params[:id])
   end
 
-  def profile_edit
-    @user = User.find(params[:id])
-  end
-
-  def profile_update
+  def update
     @user = User.find(params[:id])
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to profile_path(@user), notice: 'Profile was successfully updated.' }
+        format.html { redirect_to admin_users_path, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
@@ -29,5 +25,4 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit!
     end
-
 end

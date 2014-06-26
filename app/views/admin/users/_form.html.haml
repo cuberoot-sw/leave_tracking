@@ -1,0 +1,15 @@
+= form_for @user, :url => admin_user_path(@user), :html => { :method => :put, :class => 'form-horizontal' } do |f|
+  = render :partial => 'shared/error_messages', :locals => { :target => @user }
+  .control-group
+    .control-label
+      = f.label :role, 'Role'
+    .controls
+      = f.select :role, select_role_options(@user)
+  .control-group
+    .control-label
+      = f.label :manager_id, 'Manager'
+    .controls
+      = f.select :manager_id, select_manager_options(@user)
+  .control-group
+    .controls
+      = f.submit 'Save', :class => 'btn btn-danger'

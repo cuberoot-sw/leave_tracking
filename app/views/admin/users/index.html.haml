@@ -12,8 +12,10 @@
           %th Email
           %th Role
           %th Date Of Joining
-          -#%th
-          -#%th
+          %th Manager
+          %th Invitation Accepted?
+          %th
+          %th
           -#%th
 
         - @users.each do |user|
@@ -22,15 +24,14 @@
             %td= user.email
             %td= user.role
             %td= user.date_of_joining
-            -#%td
-              -#= link_to user do
-                -#%i.icon-reorder{:title => 'view'}
-            -#%td
-              -#= link_to edit_user_path(user) do
-                -#%i.icon-edit{:title => 'edit'}
-            -#%td
-              -#= link_to user, :method => :delete, :data => { :confirm => 'Are you sure?' } do
-                -#%i.icon-trash{:title => 'delete'}
+            %td= user.manager.name
+            %td= user.invitation_accepted? ? '&#x2713;'.html_safe : nil
+            %td
+              = link_to edit_admin_user_path(user) do
+                %i.icon-edit{:title => 'edit'}
+            %td
+              = link_to profile_path(user) do
+                %i.icon-reorder{:title => 'view'}
       %br
       .digg_pagination
         = will_paginate @users, :container => false

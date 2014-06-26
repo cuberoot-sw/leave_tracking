@@ -1,0 +1,7 @@
+.content-widgets.gray
+  .widget-head.orange
+    %h3 Editing User
+  .widget-container
+    = render 'form'
+    = link_to admin_users_path do
+      %i.icon-arrow-left{ title: 'Back' }
