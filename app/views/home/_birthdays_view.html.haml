@@ -1,0 +1,8 @@
+- if @birthdays.present?
+  %h4 Todays Birthdays
+  %ul
+    -@birthdays.each do |user|
+      %li
+        = image_tag '/assets/cake-icon.png', :class => 'cake-icon'
+        &nbsp; &nbsp;
+        = "#{user.name} ( #{user.email} ) "

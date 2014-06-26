@@ -14,11 +14,6 @@
     %p
       %b Your Balance Leaves:
       = @balance_leaves.to_i
+
     %hr
-    %h3 Todays Birthdays
-    %ul
-      -@birthdays.each do |user|
-        %li
-          = image_tag '/assets/cake-icon.png', :class => 'cake-icon'
-          &nbsp; &nbsp;
-          = "#{user.name} ( #{user.email} ) "
+    = render partial: 'birthdays_view'
