@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController
   def index
-    @users = User.paginate(:page => params[:page]).all
+    @users = User.paginate(:page => params[:page]).all.order(:name)
   end
 
   def edit
