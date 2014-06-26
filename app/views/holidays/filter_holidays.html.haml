@@ -2,7 +2,7 @@
   .widget-head.orange
     %h3 Listing holidays
   .widget-container
-    = select_tag 'select_year', options_from_collection_for_select(Setting.all, 'year', 'year', @year)
+    = select_tag 'select_year', select_year_options(@year)
     #data-table_wrapper.dataTables_wrapper.form-inline
       %table#data-table.table.table-striped.table-bordered.dataTable
         %tr
