@@ -70,7 +70,7 @@
                   =link_to 'Holiday List', holidays_path
             - if user_signed_in? && current_user.is_manager?
               %li
-                = link_to 'Manage Resorces Leaves', manager_leaves_path
+                = link_to 'Manage Resources Leaves', manager_leaves_path
             - if user_signed_in? && current_user.is_admin?
               %li
                 = link_to 'Settings', settings_path

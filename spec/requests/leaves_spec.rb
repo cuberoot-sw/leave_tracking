@@ -40,7 +40,7 @@ describe "Users" do
     @leave = FactoryGirl.create(:apply_leave, :user_id => @user.id)
 
     # when
-    click_link 'Manage Leaves'
+    click_link 'Manage Your Leaves'
 
     # then
     page.should have_link('Edit')
@@ -66,14 +66,14 @@ describe "manager" do
     login(@manager)
   end
 
-  it "should able to pending leaves" do
+  it "should able to view pending leaves" do
     # given
     @user = FactoryGirl.create(:employee, :manager_id => @manager.id)
     visit root_path
     @leave = FactoryGirl.create(:apply_leave, :user_id => @user.id)
 
     # when
-    click_link 'Manage Leaves'
+    click_link 'Manage Resources Leaves'
 
     # then
     page.should have_content('Pending Leaves')
@@ -89,7 +89,7 @@ describe "manager" do
     @leave = FactoryGirl.create(:apply_leave, :user_id => @user.id)
 
     # when
-    click_link 'Manage Leaves'
+    click_link 'Manage Resources Leaves'
 
     # then
     page.should have_link('Approve')
@@ -110,7 +110,7 @@ describe "manager" do
     @leave = FactoryGirl.create(:apply_leave, :user_id => @user.id)
 
     # when
-    click_link 'Manage Leaves'
+    click_link 'Manage Resources Leaves'
 
     # then
     page.should have_link('Approve')
@@ -124,7 +124,7 @@ describe "manager" do
     Leave.find(@leave.id).status.should eq('rejected')
   end
 
-  it "should has facility to edit/delete his leaves" do
+  it "should has facility to edit his leaves" do
     # given
     @leave = FactoryGirl.create(:apply_leave, :user_id => @manager.id)
 
