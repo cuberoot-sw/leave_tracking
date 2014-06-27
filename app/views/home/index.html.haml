@@ -29,3 +29,9 @@
       .widget-container
         %hr
         = render partial: 'birthdays_view'
+  .row-fluid
+    .span12
+      .widget-container
+        %hr
+        - @resources.each do |resource|
+          = resource.name

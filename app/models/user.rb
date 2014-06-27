@@ -46,6 +46,10 @@ class User < ActiveRecord::Base
     role == 'manager'
   end
 
+  def is_employee?
+    role == 'employee'
+  end
+
   def set_default_role
     if self.new_record?
       self.role = 'employee'
@@ -54,6 +58,10 @@ class User < ActiveRecord::Base
 
   def manager
     User.where(id: self.manager_id).first
+  end
+
+  def resources
+    User.where(manager_id: self.id)
   end
 
   def collect_leaves_count
