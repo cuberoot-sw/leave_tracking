@@ -5,7 +5,7 @@ end
 
 describe "Users" do
   before(:each) do
-    @admin = FactoryGirl.create(:user)
+    @admin = FactoryGirl.create(:user, :role => 'manager')
     @user = FactoryGirl.create(:employee, manager_id: @admin.id)
     login(@user)
   end
@@ -60,16 +60,15 @@ describe "Users" do
   end
 end
 
-describe "Admin" do
+describe "manager" do
   before(:each) do
-    @admin = FactoryGirl.create(:user)
-
-    login(@admin)
+    @manager = FactoryGirl.create(:user, role: 'manager' )
+    login(@manager)
   end
 
   it "should able to pending leaves" do
     # given
-    @user = FactoryGirl.create(:employee, :manager_id => @admin.id)
+    @user = FactoryGirl.create(:employee, :manager_id => @manager.id)
     visit root_path
     @leave = FactoryGirl.create(:apply_leave, :user_id => @user.id)
 
@@ -80,13 +79,12 @@ describe "Admin" do
     page.should have_content('Pending Leaves')
     page.should have_content('Applied By')
     page.should have_content('Number Of Days')
-
     page.should have_content(@user.name)
   end
 
   it "should approve pending leave" do
     # given
-    @user = FactoryGirl.create(:employee, :manager_id => @admin.id)
+    @user = FactoryGirl.create(:employee, :manager_id => @manager.id)
     visit root_path
     @leave = FactoryGirl.create(:apply_leave, :user_id => @user.id)
 
@@ -107,7 +105,7 @@ describe "Admin" do
 
   it "should reject pending leave" do
     # given
-    @user = FactoryGirl.create(:employee, :manager_id => @admin.id)
+    @user = FactoryGirl.create(:employee, :manager_id => @manager.id)
     visit root_path
     @leave = FactoryGirl.create(:apply_leave, :user_id => @user.id)
 
@@ -128,14 +126,13 @@ describe "Admin" do
 
   it "should has facility to edit/delete his leaves" do
     # given
-    @leave = FactoryGirl.create(:apply_leave, :user_id => @admin.id)
+    @leave = FactoryGirl.create(:apply_leave, :user_id => @manager.id)
 
     # when
     visit leaves_path
 
     # then
     page.should have_link('Edit')
-    page.should have_link('Destroy')
   end
 
  end

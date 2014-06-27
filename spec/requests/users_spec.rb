@@ -8,7 +8,7 @@ describe "Admin" do
 
   it "should have Invite User link" do
     # when
-    visit users_path
+    visit admin_users_path
 
     # then
     page.should have_link 'Invite Employee'
@@ -17,7 +17,7 @@ describe "Admin" do
   it "should invite the new employee" do
 
     # given
-      visit users_path
+      visit admin_users_path
 
     # when
       click_link 'Invite Employee'
@@ -36,7 +36,7 @@ describe "Admin" do
 
   it "invitation failed for invalid email" do
      # given
-      visit users_path
+      visit admin_users_path
 
     # when
       click_link 'Invite Employee'
@@ -55,7 +55,7 @@ describe "Admin" do
 
   it "should be a manager of invited user" do
     # given
-      visit users_path
+      visit admin_users_path
 
     # when
       click_link 'Invite Employee'
