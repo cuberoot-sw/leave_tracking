@@ -24,11 +24,12 @@
         %p
           %b Your Balance Leaves:
           = @balance_leaves.to_i
-  .row-fluid
-    .span12
-      .widget-container
-        %hr
-        = render partial: 'birthdays_view'
+  - if @birthdays.present?
+    .row-fluid
+      .span12
+        .widget-container
+          %hr
+          = render partial: 'birthdays_view'
   .row-fluid
     .span12
       .widget-container
