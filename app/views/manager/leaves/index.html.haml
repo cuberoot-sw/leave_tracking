@@ -1,0 +1,50 @@
+.content-widgets.light-gray
+  .widget-head.orange
+    - title = (params[:status] || 'Pending').capitalize + ' Leaves'
+    %h3= title
+  %br
+  .widget-container
+    = link_to 'pending', manager_leaves_path(status: 'pending'), :class => 'btn btn-orange'
+    = link_to 'Approved', manager_leaves_path(status: 'approved'), :class => 'btn btn-orange'
+    = link_to 'Rejected', manager_leaves_path(status: 'rejected'), :class => 'btn btn-orange'
+    = link_to 'Cancelled', manager_leaves_path(status: 'cancelled'), :class => 'btn btn-orange'
+    %br
+    %br
+    #data-table_wrapper.dataTables_wrapper.form-inline
+      %table#data-table.table.table-bordered.dataTable
+        %tr
+          %th Applied By
+          %th Start date
+          %th End date
+          %th Number Of Days
+          %th Status
+          %th Reason
+          %th Rejection Reason
+          %th Action
+
+        - @leaves.each do |leave|
+          %tr
+            %td= leave.user.name
+            %td= leave.start_date
+            %td= leave.end_date
+            %td= leave.no_of_days
+            %td= leave.status
+            %td= leave.reason
+            %td= leave.rejection_reason
+            %td= leave_approval_links(leave)
+%br
+/ set up the modal to start hidden and fade in and out
+#reject_reasonModal.modal.fade
+  .modal-dialog
+    .modal-content
+      / dialog body
+      .modal-body
+        %button.close{"data-dismiss" => "modal", type: "button"} ×
+        %p.error_msg
+        %label Rejection Reason:
+        %input{type: 'hidden', id: 'leave_id'}
+        %textarea{name: 'reason', id: 'rejection_reason'}
+      / dialog buttons
+      .modal-footer
+        %button.btn.btn-primary.submit_reason{type: "button"} Submit
+        %button.btn.btn-primary.cancel_reason{type: "button"} Cancel

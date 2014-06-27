@@ -1,0 +1,32 @@
+.content-widgets.gray
+  .widget-head.orange
+    %h3 Leave
+  .widget-container
+    %p
+      %b Start date:
+      = @leave.start_date.strftime('%d %b %Y')
+    %p
+      %b End date:
+      = @leave.end_date.strftime('%d %b %Y')
+    %p
+      %b No of days:
+      = @leave.no_of_days
+    %p
+      %b Status:
+      = @leave.status
+    %p
+      %b Reason:
+      = @leave.reason
+    %p
+      %b Approved on:
+      = @leave.approved_on if @leave.approved_on.present?
+    %p
+      %b Approved by:
+      = User.approved_by(@leave.approved_by) if @leave.approved_by.present?
+    %p
+      %b Rejection reason:
+      = @leave.rejection_reason if @leave.rejection_reason.present?
+
+    = link_to manager_leaves_path do
+      %i.icon-arrow-left{ title: 'Back' }
+
