@@ -21,8 +21,8 @@ FactoryGirl.define do
   end
 
   factory :employee, class: User do
-    sequence(:name) {|u| "user#{u}"}
-    sequence(:email) {|n| "user#{n}@cuberoot.in"}
+    sequence(:name) {|u| "employee#{u}"}
+    sequence(:email) {|n| "employee#{n}@cuberoot.in"}
     password 'password123'
     password_confirmation 'password123'
     role 'employee'
