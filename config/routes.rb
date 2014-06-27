@@ -3,6 +3,15 @@ Rails.application.routes.draw do
     resources :users, :only => [:index, :edit, :update]
   end
 
+  namespace :manager do
+    resources :leaves do
+      member do
+        get 'reject'
+        get 'approve'
+      end
+    end
+  end
+
   resources :settings do
     resources :holidays
   end
@@ -10,16 +19,12 @@ Rails.application.routes.draw do
   resources :users, :only => [:index] do
     resources :leaves do
       member do
-        get 'approve'
         get 'cancel'
       end
     end
   end
 
   resources :leaves, :only => [:index] do
-    member do
-      get 'reject'
-    end
   end
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.

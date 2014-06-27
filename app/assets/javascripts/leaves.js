@@ -20,7 +20,7 @@ $(document).ready(function(){
       $('#reject_reasonModal .error_msg').html('Rejection reason is required.');
       return false;
     }else{
-      url = '/leaves/'+$('#reject_reasonModal #leave_id').val()+'/reject?reason='+reason;
+      url = '/manager/leaves/'+$('#reject_reasonModal #leave_id').val()+'/reject?reason='+reason;
       window.location.href = url;
     }
   });

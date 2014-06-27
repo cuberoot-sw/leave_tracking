@@ -1,25 +1,11 @@
 class LeavesController < ApplicationController
   before_action :set_leave, only: [:show, :edit, :update, :destroy]
-  before_filter :check_is_manager?, :only => [:approve, :reject]
 
   # GET /leaves
   # GET /leaves.json
   def index
-    if current_user.is_admin?
-      status = params[:status] ? params[:status] : 'pending'
-      @leaves = Leave.where(status: status)
-    elsif current_user.is_manager?
-      status = params[:status] ? params[:status] : 'pending'
-      @leaves = Leave.joins(:user)
-                  .where('users.manager_id = ?
-                          AND leaves.status = ?',
-                          current_user.id, status)
-      @leaves = @leaves + current_user.leaves
-
-    else
-      status = params[:status] ? params[:status] : 'pending'
-      @leaves = current_user.leaves.where(status: status)
-    end
+    status = params[:status] ? params[:status] : 'pending'
+    @leaves = current_user.leaves.where(status: status)
   end
 
   # GET /leaves/1
@@ -79,25 +65,6 @@ class LeavesController < ApplicationController
     end
   end
 
-  def approve
-    @leave = Leave.find(params[:id])
-    if @leave.approve!
-      @leave.update_leave(current_user)
-      @leave.notify_email
-      redirect_to leaves_url, notice: 'Leave was successfully Approved.'
-    end
-  end
-
-  def reject
-    @leave = Leave.find(params[:id])
-    @leave.add_reason(params[:reason])
-    @leave.reject!
-    if @leave.save
-      @leave.notify_email
-      redirect_to leaves_url, notice: 'Leave was successfully Rejected.'
-    end
-  end
-
   def cancel
     @leave = Leave.find(params[:id])
     @leave.cancel!
@@ -120,8 +87,4 @@ class LeavesController < ApplicationController
       #params.require(:leave).permit(:start_date, :end_date, :no_of_days, :status, :reason, :approved_on, :approved_by, :rejection_reason, :references)
     end
 
-    def check_is_manager?
-      # manager and admin has facility to approve/reject leaves
-      current_user.is_admin? || current_user.is_manager?
-    end
 end
