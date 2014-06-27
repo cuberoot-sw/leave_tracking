@@ -1,6 +1,6 @@
 class LeavesController < ApplicationController
   before_action :set_leave, only: [:show, :edit, :update, :destroy]
-  before_filter :check_is_admin?, :only => [:approve, :reject]
+  before_filter :check_is_manager?, :only => [:approve, :reject]
 
   # GET /leaves
   # GET /leaves.json
@@ -8,6 +8,14 @@ class LeavesController < ApplicationController
     if current_user.is_admin?
       status = params[:status] ? params[:status] : 'pending'
       @leaves = Leave.where(status: status)
+    elsif current_user.is_manager?
+      status = params[:status] ? params[:status] : 'pending'
+      @leaves = Leave.joins(:user)
+                  .where('users.manager_id = ?
+                          AND leaves.status = ?',
+                          current_user.id, status)
+      @leaves = @leaves + current_user.leaves
+
     else
       status = params[:status] ? params[:status] : 'pending'
       @leaves = current_user.leaves.where(status: status)
@@ -112,7 +120,8 @@ class LeavesController < ApplicationController
       #params.require(:leave).permit(:start_date, :end_date, :no_of_days, :status, :reason, :approved_on, :approved_by, :rejection_reason, :references)
     end
 
-    def check_is_admin?
-      current_user.is_admin?
+    def check_is_manager?
+      # manager and admin has facility to approve/reject leaves
+      current_user.is_admin? || current_user.is_manager?
     end
 end
