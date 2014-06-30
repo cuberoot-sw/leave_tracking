@@ -6,33 +6,9 @@
     %br
     %br
     #data-table_wrapper.dataTables_wrapper.form-inline
-      %table#data-table.table.table-striped.table-bordered.dataTable
-        %tr
-          %th Name
-          %th Email
-          %th Role
-          %th Date Of Joining
-          %th Manager
-          %th Invitation Accepted?
-          %th
-          %th
-          -#%th
-
-        - @users.each do |user|
-          %tr
-            %td= user.name if user.name.present?
-            %td= user.email
-            %td= user.role
-            %td= user.date_of_joining if user.date_of_joining.present?
-            %td= user.manager.name if user.manager.present?
-            %td= user.invitation_accepted? ? '&#x2713;'.html_safe : nil
-            %td
-              = link_to edit_admin_user_path(user) do
-                %i.icon-edit{:title => 'edit'}
-            %td
-              = link_to profile_path(user) do
-                %i.icon-reorder{:title => 'view'}
+      = render :partial => 'user_details'
       %br
       .digg_pagination
         = will_paginate @users, :container => false
       %br
+

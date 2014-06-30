@@ -30,9 +30,12 @@
         .widget-container
           %hr
           = render partial: 'birthdays_view'
-  .row-fluid
-    .span12
-      .widget-container
-        %hr
-        - @resources.each do |resource|
-          = resource.name
+  - if current_user.is_manager?
+    .row-fluid
+      .span12
+        .widget-container
+          %hr
+          %h4 Resources list
+          #data-table_wrapper.dataTables_wrapper.form-inline
+            = render :partial => '/admin/users/user_details',
+                     :locals => { :@users => @resources }
