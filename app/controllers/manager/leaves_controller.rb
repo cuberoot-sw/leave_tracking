@@ -26,7 +26,7 @@ class Manager::LeavesController < ApplicationController
     @leave = Leave.find(params[:id])
     if @leave.approve!
       @leave.update_leave(current_user)
-      @leave.notify_email
+      @leave.notify_email(current_user)
       redirect_to manager_leaves_url, notice: 'Leave was successfully Approved.'
     end
   end
@@ -36,7 +36,7 @@ class Manager::LeavesController < ApplicationController
     @leave.add_reason(params[:reason])
     @leave.reject!
     if @leave.save
-      @leave.notify_email
+      @leave.notify_email(current_user)
       redirect_to manager_leaves_url, notice: 'Leave was successfully Rejected.'
     end
   end

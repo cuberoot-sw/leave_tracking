@@ -31,8 +31,8 @@ class Leave < ActiveRecord::Base
     state :approved, :pending, :rejected, :cancelled
   end
 
-  def notify_email
-    LeaveMailer.send("notify_#{self.status}_leave", self).deliver
+  def notify_email(curr_user=false)
+    LeaveMailer.send("notify_#{self.status}_leave", self, curr_user).deliver
   end
 
   def add_reason(reason)

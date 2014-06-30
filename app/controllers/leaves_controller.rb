@@ -31,7 +31,7 @@ class LeavesController < ApplicationController
 
     respond_to do |format|
       if @leave.save
-        @leave.notify_email
+        @leave.notify_email(current_user)
         format.html { redirect_to user_leafe_path(@user, @leave), notice: 'Leave was successfully created.' }
         format.json { render :show, status: :created, location: @leave }
       else
