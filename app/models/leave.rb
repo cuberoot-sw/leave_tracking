@@ -91,7 +91,8 @@ class Leave < ActiveRecord::Base
   def self.total_applied_leaves(user, year=false)
     year = year || Time.now.year
     no_of_days = Leave.where('extract(year from start_date) = ? AND
-                 user_id = ? ', year, user.id).sum(:no_of_days)
+                 user_id = ? AND (status = ? OR status = ?)', year,
+                 user.id, 'pending', 'approved').sum(:no_of_days)
     return no_of_days
   end
 
