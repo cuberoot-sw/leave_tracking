@@ -4,10 +4,7 @@
     %h3= title
   %br
   .widget-container
-    = link_to 'pending', leaves_path(status: 'pending'), :class => 'btn btn-orange'
-    = link_to 'Approved', leaves_path(status: 'approved'), :class => 'btn btn-orange'
-    = link_to 'Rejected', leaves_path(status: 'rejected'), :class => 'btn btn-orange'
-    = link_to 'Cancelled', leaves_path(status: 'cancelled'), :class => 'btn btn-orange'
+    = status_links(params[:status] || 'pending')
     %br
     %br
     #data-table_wrapper.dataTables_wrapper.form-inline
