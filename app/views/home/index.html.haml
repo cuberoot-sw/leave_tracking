@@ -39,3 +39,5 @@
           #data-table_wrapper.dataTables_wrapper.form-inline
             = render :partial => '/admin/users/user_details',
                      :locals => { :@users => @resources }
+          .digg_pagination
+            = will_paginate @users, :container => false
