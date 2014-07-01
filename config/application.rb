@@ -21,5 +21,6 @@ module Lts4
     # config.i18n.default_locale = :de
 
     config.assets.paths << Rails.root.join('app', 'assets', 'font')
+    config.serve_static_assets = true
   end
 end
