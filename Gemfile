@@ -55,3 +55,6 @@ gem 'carrierwave', '0.10.0'
 gem 'state_machine', '1.2.0'
 gem 'yettings', '0.1.1'
 gem 'jquery-turbolinks', '2.0.2'
+gem 'rails_12factor', :group => [:production]
+
+ruby '2.0.0'
