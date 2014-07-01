@@ -7,6 +7,8 @@ class Leave < ActiveRecord::Base
 
   before_save :calculate_leaves
 
+  self.per_page = 10
+
   def validate_dates
     if (start_date.present? && end_date.present? && (start_date > end_date))
       errors.add(:start_date, "must be earlier than end date")

@@ -5,7 +5,7 @@ class LeavesController < ApplicationController
   # GET /leaves.json
   def index
     status = params[:status] ? params[:status] : 'pending'
-    @leaves = current_user.leaves.where(status: status)
+    @leaves = current_user.leaves.where(status: status).paginate(:page => params[:page])
   end
 
   # GET /leaves/1

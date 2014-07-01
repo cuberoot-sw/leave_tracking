@@ -7,13 +7,13 @@ class Manager::LeavesController < ApplicationController
   def index
     if current_user.is_admin?
       status = params[:status] ? params[:status] : 'pending'
-      @leaves = Leave.where(status: status)
+      @leaves = Leave.where(status: status).paginate(:page => params[:page])
     elsif current_user.is_manager?
       status = params[:status] ? params[:status] : 'pending'
       @leaves = Leave.joins(:user)
                   .where('users.manager_id = ?
                           AND leaves.status = ?',
-                          current_user.id, status)
+                          current_user.id, status).paginate(:page => params[:page])
     end
   end
 

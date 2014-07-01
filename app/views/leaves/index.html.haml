@@ -29,6 +29,9 @@
             %td= leave.reason
             %td= leave.rejection_reason
             = render_links(leave)
+    %br
+    .digg_pagination
+      = will_paginate @leaves, :container => false
 %br
 / set up the modal to start hidden and fade in and out
 #reject_reasonModal.modal.fade
