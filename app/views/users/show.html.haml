@@ -9,43 +9,60 @@
     .span6
       .widget-container
         %p
-          %strong Name:
+          %strong Name :
+          &nbsp;
           = @user.name
         %p
-          %strong Email:
+          %strong Email :
+          &nbsp;
           = @user.email
         %p
-          %strong Alternate Email:
+          %strong Alternate Email :
+          &nbsp;
           = @user.alternate_email
         %p
-          %strong Date Of Birth:
+          %strong Date Of Birth :
+          &nbsp;
           = @user.date_of_birth.strftime('%d %b %Y') if @user.date_of_birth.present?
         %p
-          %strong Date Of Joining:
+          %strong Date Of Joining :
+          &nbsp;
           = @user.date_of_joining.strftime('%d %b %Y') if @user.date_of_joining
         %p
-          %strong Blood Group:
+          %strong Blood Group :
+          &nbsp;
           = @user.blood_group
     .span6
       .widget-container
         %p
-          %strong Profile Picture:
+          %strong Profile Picture :
+          &nbsp;
           = image_tag @user.profile_pic_url, :class => 'profile-pic' if @user.profile_pic.present?
         %p
-          %strong Phone Number:
+          %strong Phone Number :
+          &nbsp;
           = @user.phone_number if @user.phone_number.present?
         %p
-          %strong Alternate Phone Number:
+          %strong Alternate Phone Number :
+          &nbsp;
           = @user.alternate_phone_number if @user.alternate_phone_number.present?
         %p
-          %strong Local Address:
+          %strong Local Address :
+          &nbsp;
           = @user.local_address if @user.local_address.present?
         %p
-          %strong Permanent Address:
+          %strong Permanent Address :
+          &nbsp;
           = @user.permanent_address if @user.permanent_address.present?
         %p
-          %strong Skype:
+          %strong Skype :
+          &nbsp;
           = @user.skype_id if @user.skype_id.present?
         %p
-          %strong Github:
+          %strong Github :
+          &nbsp;
           = @user.github_id if @user.github_id.present?
+  %br
+  &nbsp; &nbsp; &nbsp;
+  = link_to current_user.is_admin? ? admin_users_path : root_path do
+    %i.icon-arrow-left{ title: 'Back' }
