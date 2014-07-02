@@ -24,6 +24,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def remove_profile_pic
+    @user = User.find(params[:id])
+    @user.remove_profile_pic!
+    @user.save
+    render :json => {:status  => "success"}
+  end
+
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params

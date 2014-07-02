@@ -19,7 +19,13 @@
   .control-group
     %label.control-label Profile Picture
     .controls
-      = f.file_field :profile_pic
+      .row.profile_pic_div
+        .span1{:id => 'profile_photo'}
+          - if @user.profile_pic_url.present?
+            = image_tag @user.profile_pic_url.to_s, :class => 'profile-pic'
+            = link_to 'Remove', '#', :id => "remove_profile_pic_#{@user.id}", :class => 'remove-file-link'
+        .span1
+          = f.file_field :profile_pic
 %fieldset#stepy_form-step-1.step{style: "display: none;", title: "Step 2"}
   %legend{style: "display: none;"} description Two
   .control-group

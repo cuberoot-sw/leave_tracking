@@ -109,4 +109,15 @@ $(function () {
       $("#user_permanent_address").show().addClass('valid');
     }
   });
+
+  // remove profile pic
+  $('a.remove-file-link').click(function(e){
+    e.preventDefault();
+    var user_id = $(this).attr('id').split('_')[3],
+    url = '/users/'+user_id+'/remove_profile_pic';
+    $.get(url, user_id, function(data){
+      $('#profile_photo').remove();
+    });
+
+  });
 });

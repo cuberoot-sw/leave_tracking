@@ -22,6 +22,9 @@ Rails.application.routes.draw do
         get 'cancel'
       end
     end
+    member do
+      get 'remove_profile_pic'
+    end
   end
 
   resources :leaves, :only => [:index] do
