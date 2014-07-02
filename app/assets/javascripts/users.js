@@ -19,8 +19,18 @@ $(function () {
     rules: {
         'user[email]': 'required',
         'user[alternate_email]': 'required',
-        'user[phone_number]': 'required',
-        'user[alternate_phone_number]': 'required',
+        'user[phone_number]': {
+          required: true,
+          number: true,
+          minlength: 10,
+          maxlength: 12
+        },
+        'user[alternate_phone_number]': {
+          required: true,
+          number: true,
+          minlength: 10,
+          maxlength: 12
+        },
         'user[name]': 'required',
         'user[date_of_birth]': 'required',
         'user[date_of_joining]': 'required'
@@ -33,10 +43,16 @@ $(function () {
             required: 'Email field is requerid!'
         },
         'user[phone_number]': {
-            required: 'Phone Number field is requerid!'
+            required: 'Phone Number field is requerid!',
+            number: 'Enter Numeric value only.',
+            minlength: 'Enter atleast 10 digit phone number.',
+            maxlength: 'Enter atlmost 12 digit phone number.'
         },
         'user[alternate_phone_number]': {
-            required: 'Alternate Phone Number field is requerid!'
+            required: 'Alternate Phone Number field is requerid!',
+            number: 'Alternate Phone Number -Enter Numeric value only.',
+            minlength: 'Enter atleast 10 digit phone number.',
+            maxlength: 'Enter atlmost 12 digit phone number.'
         },
         'user[name]': {
             required: 'Name field is requerid!'
