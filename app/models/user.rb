@@ -12,6 +12,10 @@ class User < ActiveRecord::Base
 
   before_save :set_default_role unless Rails.env.test? # disable default_role
 
+  attr_accessor :same_local_address
+
+  before_save :set_address unless Rails.env.test? # disable set_address
+
   has_many :leaves, :class_name => 'Leave'
 
   self.per_page = 10
@@ -69,5 +73,14 @@ class User < ActiveRecord::Base
     balance_leaves = Leave.balance_leaves(self)
     return total_leaves, balance_leaves
   end
+
+  private
+    def set_address
+      unless self.new_record?
+        if same_local_address == 'on'
+          self.permanent_address = self.local_address
+        end
+      end
+    end
 
 end

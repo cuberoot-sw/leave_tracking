@@ -33,7 +33,19 @@ $(function () {
         },
         'user[name]': 'required',
         'user[date_of_birth]': 'required',
-        'user[date_of_joining]': 'required'
+        'user[date_of_joining]': 'required',
+        'user[local_address]': 'required',
+        'user[permanent_address]': {
+          required: {
+            depends: function(element) {
+              if ($('#same_local_address').is(':checked')){
+                return false;
+              }else{
+                return true;
+              }
+            }
+          }
+        }
     },
     messages: {
         'user[alternate_email]': {
@@ -62,8 +74,13 @@ $(function () {
         },
         'user[date_of_joining]': {
             required: 'Date Of Join field is required!'
+        },
+        'user[local_address]': {
+            required: 'Local Address field is required!'
+        },
+        'user[permanent_address]': {
+            required: 'Permanent Address field is required!'
         }
-
     }
   });
 
@@ -84,4 +101,12 @@ $(function () {
     yearRange: doj_minyear+':'+curr_year
   });
 
+  // permanent address is same as local address
+  $('#same_local_address').click(function(){
+    if($("#same_local_address").is(':checked')){
+      $("#user_permanent_address").hide().removeClass('valid');
+    }else{
+      $("#user_permanent_address").show().addClass('valid');
+    }
+  });
 });

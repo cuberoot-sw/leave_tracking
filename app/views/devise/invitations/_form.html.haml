@@ -27,6 +27,17 @@
     .controls
       = f.text_field :name
   .control-group
+    %label.control-label Local Address
+    .controls
+      = f.text_area :local_address
+  .control-group
+    %label.control-label  Permanent Address
+    .controls
+      %label.checkbox
+        %input{:type => "checkbox", :id => 'same_local_address', :name => 'user[same_local_address]'}
+        Same As Local Address
+      = f.text_area :permanent_address
+  .control-group
     %label.control-label Date of Birth
     .controls
       .input-append
