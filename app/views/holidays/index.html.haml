@@ -6,6 +6,7 @@
       %table#data-table.table.table-striped.table-bordered.dataTable
         %tr
           %th Date
+          %th Day
           %th Occasion
           - if current_user.is_admin?
             %th
@@ -15,6 +16,7 @@
         - @holidays.each do |holiday|
           %tr
             %td= holiday.date
+            %td= holiday.date.strftime('%A')
             %td= holiday.occasion
             - if current_user.is_admin?
               %td

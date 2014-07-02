@@ -7,11 +7,14 @@
       %table#data-table.table.table-striped.table-bordered.dataTable
         %tr
           %th Date
+          %th Day
           %th Occasion
+
 
         - @holidays.each do |holiday|
           %tr
             %td= holiday.date
+            %td= holiday.date.strftime('%A')
             %td= holiday.occasion
 
       %br
