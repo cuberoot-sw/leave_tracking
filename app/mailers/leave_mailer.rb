@@ -4,10 +4,10 @@ class LeaveMailer < ActionMailer::Base
     @leave = leave
     @user = curr_user
     @mail_to = @user.manager
-    @cc = @mail_to.manager
+    @cc = @mail_to.manager.email if @mail_to.manager.present?
     @subject = "New Leave Application By- #{@user.name}"
     @from = @user.email
-    setup_email(@mail_to.email, @subject, @from, @cc.email)
+    setup_email(@mail_to.email, @subject, @from, @cc)
   end
 
   def notify_approved_leave(leave, curr_user)
