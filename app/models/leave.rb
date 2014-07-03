@@ -37,6 +37,10 @@ class Leave < ActiveRecord::Base
     LeaveMailer.send("notify_#{self.status}_leave", self, curr_user).deliver
   end
 
+  def notify_updated_email(curr_user=false)
+    LeaveMailer.notify_updated_leave(self, curr_user).deliver
+  end
+
   def add_reason(reason)
     self.rejection_reason = reason
   end
@@ -48,9 +52,7 @@ class Leave < ActiveRecord::Base
   end
 
   def calculate_leaves
-    if self.new_record?
-      self.no_of_days = calculate_applied_leaves
-    end
+    self.no_of_days = calculate_applied_leaves
   end
 
   ## if use is newly joined then total_leaves = months_in_year from joining * leave_rate_per_month

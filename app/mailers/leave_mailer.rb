@@ -37,6 +37,16 @@ class LeaveMailer < ActionMailer::Base
     setup_email(@mail_to, @subject, @from)
   end
 
+  def notify_updated_leave(leave, curr_user)
+    @leave = leave
+    @user = curr_user
+    @mail_to = @user.manager
+    @cc = @mail_to.manager.email if @mail_to.manager.present?
+    @subject = "Modified Leave Application By- #{@user.name}"
+    @from = @user.email
+    setup_email(@mail_to.email, @subject, @from, @cc)
+  end
+
 
   protected
     def setup_email(mail_to, subject, from, cc=false)

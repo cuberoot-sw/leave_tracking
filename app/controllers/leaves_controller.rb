@@ -46,6 +46,7 @@ class LeavesController < ApplicationController
   def update
     respond_to do |format|
       if @leave.update(leave_params)
+        @leave.notify_updated_email(current_user)
         format.html { redirect_to user_leafe_path(@user, @leave), notice: 'Leave was successfully updated.' }
         format.json { render :show, status: :ok, location: @leave }
       else
