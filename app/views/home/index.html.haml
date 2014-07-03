@@ -11,18 +11,22 @@
     .span6
       .widget-container
         %p
-          %b Date Of Joining:
+          %b Date Of Joining :
+          &nbsp;
           = current_user.date_of_joining.strftime('%d %b %Y')
         %p
-          %b Manager:
+          %b Manager :
+          &nbsp;
           = manager_info(current_user)
     .span6
       .widget-container
         %p
-          %b Your Total Leaves:
+          %b Your Total Leaves :
+          &nbsp;
           = @total_leaves.to_i
         %p
-          %b Your Balance Leaves:
+          %b Your Balance Leaves :
+          &nbsp;
           = @balance_leaves.to_i
   - if @birthdays.present?
     .row-fluid
