@@ -98,4 +98,21 @@ class Leave < ActiveRecord::Base
     return no_of_days
   end
 
+  ## to get resources leaves
+  def self.resources_leaves(user, status)
+    Leave.joins(:user).where('users.manager_id = ?
+                              AND leaves.status = ?',
+                              user.id, status)
+  end
+
+  ## get all_leaves with manager to employee level
+  def self.all_leaves(user, status)
+    @leaves = Leave.resources_leaves(user, status)
+    @managers = User.where(manager_id: user.id)
+    @managers.each do |manager|
+      @leaves += Leave.resources_leaves(manager, status)
+    end
+    return @leaves
+  end
+
 end

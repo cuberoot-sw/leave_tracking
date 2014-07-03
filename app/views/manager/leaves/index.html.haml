@@ -11,6 +11,7 @@
       %table#data-table.table.table-bordered.dataTable
         %tr
           %th Applied By
+          %th Manager
           %th Start date
           %th End date
           %th Number Of Days
@@ -22,6 +23,7 @@
         - @leaves.each do |leave|
           %tr
             %td= leave.user.name
+            %td= leave.user.manager.name
             %td= leave.start_date
             %td= leave.end_date
             %td= leave.no_of_days

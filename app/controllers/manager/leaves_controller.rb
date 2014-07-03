@@ -10,10 +10,7 @@ class Manager::LeavesController < ApplicationController
       @leaves = Leave.where(status: status).paginate(:page => params[:page])
     elsif current_user.is_manager?
       status = params[:status] ? params[:status] : 'pending'
-      @leaves = Leave.joins(:user)
-                  .where('users.manager_id = ?
-                          AND leaves.status = ?',
-                          current_user.id, status).paginate(:page => params[:page])
+      @leaves = Leave.all_leaves(current_user, status).paginate(:page => params[:page])
     end
   end
 
