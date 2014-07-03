@@ -36,6 +36,10 @@ class User < ActiveRecord::Base
            Time.now.month, Time.now.day)
   }
 
+  scope :resources, lambda { |manager|
+    where(manager_id: manager.id)
+  }
+
   ROLES = %w[employee admin]
 
   def role?(base_role)
@@ -64,14 +68,20 @@ class User < ActiveRecord::Base
     User.where(id: self.manager_id).first
   end
 
-  def resources
-    User.where(manager_id: self.id)
-  end
-
   def collect_leaves_count
     total_leaves = Leave.calculate_total_leaves(self)
     balance_leaves = Leave.balance_leaves(self)
     return total_leaves, balance_leaves
+  end
+
+  ## get all resources with manager to employee level
+  def get_resources
+    @resources = User.resources(self)
+    @managers = User.where(manager_id: self.id)
+    @managers.each do |manager|
+      @resources += User.resources(manager)
+    end
+    return @resources
   end
 
   private
