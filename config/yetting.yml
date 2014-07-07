@@ -1,6 +1,9 @@
 development:
   leave_rate_per_month: 1.5
+  extra_optional_leaves: 2
 test:
   leave_rate_per_month: 1.5
+  extra_optional_leaves: 2
 production:
   leave_rate_per_month: 1.5
+  extra_optional_leaves: 2

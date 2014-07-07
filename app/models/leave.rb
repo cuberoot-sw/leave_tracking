@@ -67,6 +67,7 @@ class Leave < ActiveRecord::Base
     else
       total_leaves = 12 * Yetting.leave_rate_per_month
     end
+    total_leaves = total_leaves + Yetting.extra_optional_leaves
   end
 
 
